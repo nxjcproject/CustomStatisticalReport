@@ -1,0 +1,492 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style type="text/css">
+        .table {
+            border-collapse: collapse;
+        }
+
+            .table .td {
+                border: 1px solid black;
+            }
+    </style>
+</head>
+<body>
+    <table id="RecordTable" class="table">
+        <caption style="font-size: 14.0pt; font-family: 宋体;"><b>生产月报表（水泥物料）</b></caption>      
+        <tr>
+            <td class="td"rowspan="3" style="text-align: center; font-size: 10.0pt; font-family: 宋体; width: 120px"><b>项目名称</b></td>
+            <td class="td" colspan="2" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 100px; "><b>耗固废熟料</b></td>
+            <td class="td" colspan="2" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 100px"><b>耗粉煤灰-湿</b></td>
+            <td class="td" colspan="2" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 100px"><b>耗天然石膏</b></td>
+            <td class="td" colspan="2" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 100px"><b>耗粉煤灰K</b></td>
+            <td class="td" colspan="2" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 100px"><b>耗粉煤灰L</b></td>
+            <td class="td" colspan="2" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 100px"><b>耗粉煤灰-干</b></td>
+            <td class="td" colspan="2" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 100px"><b>耗选矿废石</b></td>
+            <td class="td" colspan="2" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 100px"><b>耗氟石膏</b></td>
+            <td class="td" colspan="2" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 100px"><b>耗双掺石灰石</b></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>总耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>单耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>总耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>单耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>总耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>单耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>总耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>单耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>总耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>单耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>总耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>单耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>总耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>单耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>总耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>单耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>总耗</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>单耗</b></td>
+          
+        </tr>
+        <tr>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(kg/t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(kg/t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(kg/t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(kg/t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(kg/t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(kg/t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(kg/t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(kg/t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(t)</b></td>
+            <td class="td" style="text-align: center; font-size: 9.0pt; font-family: 宋体; width: 50px"><b>(kg/t)</b></td>  
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体"><b>1、水泥磨</b></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">32.5级复合水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">32.5R复合水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">32.5级缓凝水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">32.5R水泥(缓凝）</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">42.5级普通水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">52.5级硅酸盐水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体"><b>1#水泥磨小计</b></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">32.5级复合水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">32.5R复合水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">32.5级缓凝水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">32.5R水泥(缓凝）</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">42.5级普通水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">52.5级水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体"><b>2#水泥磨小计</b></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">32.5级复合水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">32.5R复合水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">32.5R水泥(缓凝）</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">42.5级普通水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+        <tr>
+            <td class="td" style="text-align: left; font-size: 9.0pt; font-family: 宋体">52.5级水泥</td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+            <td class="td"></td>
+        </tr>
+    </table>
+</body>
+</html>
