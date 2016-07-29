@@ -8,22 +8,23 @@
     <LastUsedBuildConfiguration>Release</LastUsedBuildConfiguration>
     <LastUsedPlatform>Any CPU</LastUsedPlatform>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\GitProjectProgram\亮哥_NXJC\Release</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/AutoMapper.dll">
       <publishTime>10/19/2014 17:33:44</publishTime>
     </File>
     <File Include="bin/AutoSetParameters.dll">
-      <publishTime>04/15/2016 17:39:00</publishTime>
+      <publishTime>05/17/2016 19:30:57</publishTime>
     </File>
     <File Include="bin/CustomStatisticalReport.Infrastructure.dll">
-      <publishTime>05/02/2016 19:34:07</publishTime>
+      <publishTime>07/29/2016 11:10:12</publishTime>
     </File>
     <File Include="bin/CustomStatisticalReport.Service.dll">
-      <publishTime>05/13/2016 19:48:16</publishTime>
+      <publishTime>07/29/2016 11:10:13</publishTime>
     </File>
     <File Include="bin/CustomStatisticalReport.Web.dll">
-      <publishTime>05/13/2016 19:48:17</publishTime>
+      <publishTime>07/29/2016 11:10:14</publishTime>
     </File>
     <File Include="bin/EasyUIJsonParser.dll">
       <publishTime>09/12/2015 14:36:50</publishTime>
@@ -41,7 +42,7 @@
       <publishTime>12/08/2014 23:31:26</publishTime>
     </File>
     <File Include="bin/Standard_GB16780-2012.dll">
-      <publishTime>04/15/2016 17:38:59</publishTime>
+      <publishTime>05/17/2016 19:30:56</publishTime>
     </File>
     <File Include="bin/UpDownLoadFiles.dll">
       <publishTime>10/13/2015 09:04:20</publishTime>
@@ -4612,6 +4613,9 @@
     <File Include="UI_CustomStatisticalReport/DayConsumptionReport.aspx">
       <publishTime>04/24/2016 17:42:38</publishTime>
     </File>
+    <File Include="UI_CustomStatisticalReport/js/common/MergeCell.js">
+      <publishTime>07/25/2016 22:30:50</publishTime>
+    </File>
     <File Include="UI_CustomStatisticalReport/js/page/DayConsumptionReport.js">
       <publishTime>01/18/2016 14:08:49</publishTime>
     </File>
@@ -4632,6 +4636,9 @@
     </File>
     <File Include="UI_CustomStatisticalReport/js/page/report_ClinkerStatistics.js">
       <publishTime>01/18/2016 14:08:49</publishTime>
+    </File>
+    <File Include="UI_CustomStatisticalReport/js/page/report_PowerConsumptionComparison.js">
+      <publishTime>07/26/2016 01:19:30</publishTime>
     </File>
     <File Include="UI_CustomStatisticalReport/js/page/report_QueryBalanceStatistics.js">
       <publishTime>01/18/2016 14:08:49</publishTime>
@@ -4658,7 +4665,7 @@
       <publishTime>01/18/2016 14:08:49</publishTime>
     </File>
     <File Include="UI_CustomStatisticalReport/ProductionReport/ReportDaily_Production.aspx">
-      <publishTime>04/17/2016 12:28:25</publishTime>
+      <publishTime>07/20/2016 15:19:38</publishTime>
     </File>
     <File Include="UI_CustomStatisticalReport/ProductionReport/ReportMonthly_Afterheat.aspx">
       <publishTime>04/24/2016 17:42:38</publishTime>
@@ -4727,13 +4734,16 @@
       <publishTime>04/17/2016 01:06:38</publishTime>
     </File>
     <File Include="UI_CustomStatisticalReport/report_BalanceStatistics.aspx">
-      <publishTime>01/18/2016 14:08:49</publishTime>
+      <publishTime>07/24/2016 22:38:20</publishTime>
     </File>
     <File Include="UI_CustomStatisticalReport/report_CementStatistics.aspx">
       <publishTime>01/18/2016 14:08:49</publishTime>
     </File>
     <File Include="UI_CustomStatisticalReport/report_ClinkerStatistics.aspx">
       <publishTime>01/18/2016 14:08:49</publishTime>
+    </File>
+    <File Include="UI_CustomStatisticalReport/report_PowerConsumptionComparison.aspx">
+      <publishTime>07/29/2016 10:01:42</publishTime>
     </File>
     <File Include="UI_CustomStatisticalReport/report_QueryBalanceStatistics.aspx">
       <publishTime>01/18/2016 14:08:49</publishTime>
@@ -4742,7 +4752,7 @@
       <publishTime>01/18/2016 14:08:49</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/13/2016 19:48:26</publishTime>
+      <publishTime>07/29/2016 11:10:24</publishTime>
     </File>
   </ItemGroup>
 </Project>
