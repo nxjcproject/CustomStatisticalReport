@@ -45,6 +45,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\mDbDataAdaper.dll</HintPath>
     </Reference>
+    <Reference Include="Monitor_shell.Service">
+      <HintPath>..\..\..\Project_NXJC\bin\Monitor_shell.Service.dll</HintPath>
+    </Reference>
     <Reference Include="RunIndicators">
       <HintPath>..\..\..\组件\RunIndicators\RunIndicators\bin\Debug\RunIndicators.dll</HintPath>
     </Reference>
@@ -69,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComprehensiveConsumptionService.cs" />
     <Compile Include="CustomDayConsumptionReport\BalanceStatisticsService.cs" />
     <Compile Include="CustomDayConsumptionReport\CementStatisticsService.cs" />
     <Compile Include="CustomDayConsumptionReport\ClinkerStatisticsService.cs" />

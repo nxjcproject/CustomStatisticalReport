@@ -28,3 +28,7 @@ D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport
 D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.csprojResolveAssemblyReference.cache
 D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.dll
 D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.pdb
+D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\Monitor_shell.Service.dll
+D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\StatisticalReport.Infrastructure.dll
+D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\Monitor_shell.Infrastructure.dll
+D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\EnergyConsumption.dll

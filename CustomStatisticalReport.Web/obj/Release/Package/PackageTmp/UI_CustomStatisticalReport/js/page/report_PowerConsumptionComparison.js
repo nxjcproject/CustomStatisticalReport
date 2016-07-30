@@ -23,6 +23,7 @@ function QueryReportFun() {
     SelectOrganizationName = $('#TextBox_OrganizationName').textbox('getText');
     var mStartDate= $("#startDate").datebox("getValue");;
     var mEndDate = $("#endDate").datebox("getValue");;
+    var megar = $.messager.alert('提示','数据加载中...');
     if (m_OrganizationId != undefined && m_OrganizationId != "" && mStartDate != undefined && mStartDate != "" && mEndDate != undefined && mEndDate != "") {
         $.ajax({
             type: "POST",
@@ -31,20 +32,21 @@ function QueryReportFun() {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (msg) {
+                megar.window('close');
                 var m_MsgData = jQuery.parseJSON(msg.d);
-                //$.each(m_Data, function (i, item) {
-                //    var value = Number(item.Value)
-                //    var element = $(document.getElementById(item.ID));
-                //    //if (element.attr("tagName") == "span")
-                //    //element.html(value.toFixed(0));
-                //    element.html(value);
-                //    //else
-                //    //element.val(value.toFixed(0));
-                //    //$('#zc_nxjc_byc_byf_clinker01_limestoneMine_ElectricityQuantity').html(m_Data.Value);
-                //});
-                $('#datagrid_ReportTable').datagrid("loadData", m_MsgData);
-                //   $('#datagrid_ReportTable').datagrid("collapseAll");
-                myMergeCell("datagrid_ReportTable", "ProcessName");
+                if (m_MsgData.total == 0) {
+                    $('#datagrid_ReportTable').datagrid("loadData", []);
+                } else {
+                    $('#datagrid_ReportTable').datagrid("loadData", m_MsgData);
+                    myMergeCell("datagrid_ReportTable", "ProcessName");
+                }
+            },
+            beforeSend: function(XMLHttpRequest){
+                megar;
+            },
+            error: function () {
+                $("#datagrid_ReportTable").datagrid('loadData', []);
+                $.messager.alert('失败', '获取数据失败');
             }
         });
     }

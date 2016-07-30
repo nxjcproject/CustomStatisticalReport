@@ -1,4 +1,5 @@
 ﻿using CustomStatisticalReport.Infrastructure.Configuration;
+using Monitor_shell.Service.ProcessEnergyMonitor;
 using SqlServerDataAdapter;
 using System;
 using System.Collections.Generic;
@@ -66,28 +67,40 @@ namespace CustomStatisticalReport.Service
                             MaterialWeightValue = Convert.ToDecimal(originalTable.Rows[j]["sumValue"]);
                         }                   
                     }
-
                 }          
                 mStructTable.Rows[i]["PowerConsumption"] =
                     MaterialWeightValue == 0 ? 0 : (mStructTable.Rows[i]["PowerConsumption"] = Convert.ToDouble(ElectricityQuantityValue / MaterialWeightValue).ToString("0.00"));
                 if (mStructTable.Rows[i]["OrganizationId"].ToString().Trim().Contains("cementmill"))
                 {
                     mStructTable.Rows[i]["CalculationPowerConsumption"] = mStructTable.Rows[i]["PowerConsumption"];
-                
-                }
-                          
+                    string mOrganizationId=mStructTable.Rows[i]["OrganizationId"].ToString().Trim();
+                    string mVariable=mStructTable.Rows[i]["ComprehensivePowerConsumptionVariable"].ToString().Trim();
+                    string Value = ComprehensiveConsumptionService.GetComprehensiveData(mOrganizationId, mVariable, mStartDate, mEndDate).CaculateValue.ToString("0.00").Trim();
+
+                    mStructTable.Rows[i]["ComprehensivePowerConsumption"] = Value;
+                }                         
             }
             for (int i = 2; i < mStructTable.Rows.Count; i++)
             {
-                //水泥磨计算电耗
+              
                 if ((mStructTable.Rows[i]["OrganizationID"] == mStructTable.Rows[i - 1]["OrganizationID"])&& (mStructTable.Rows[i]["OrganizationID"]== mStructTable.Rows[i-2]["OrganizationID"]) && mStructTable.Rows[i]["OrganizationID"].ToString().Trim().Contains("clinker"))
                 {
+                    //熟料计算电耗
                     decimal clinkerProcessElectricityQuantity = Convert.ToDecimal(mStructTable.Rows[i]["ElectricityQuantity"]) + Convert.ToDecimal(mStructTable.Rows[i-1]["ElectricityQuantity"]) +
                         Convert.ToDecimal(mStructTable.Rows[i -2]["ElectricityQuantity"]);
                     decimal ClinkerOutput = Convert.ToDecimal(mStructTable.Rows[i]["MaterialWeight"]);
                     mStructTable.Rows[i]["CalculationPowerConsumption"] = ClinkerOutput == 0 ? 0 : (mStructTable.Rows[i]["CalculationPowerConsumption"] = Convert.ToDouble(clinkerProcessElectricityQuantity / ClinkerOutput).ToString("0.00"));
                     mStructTable.Rows[i - 1]["CalculationPowerConsumption"] = mStructTable.Rows[i]["CalculationPowerConsumption"];
                     mStructTable.Rows[i - 2]["CalculationPowerConsumption"] = mStructTable.Rows[i]["CalculationPowerConsumption"];
+
+                    //熟料综合电耗
+                    string mOrganizationId = mStructTable.Rows[i]["OrganizationId"].ToString().Trim();
+                    string mVariable = mStructTable.Rows[i]["ComprehensivePowerConsumptionVariable"].ToString().Trim();
+                    string Value = ComprehensiveConsumptionService.GetComprehensiveData(mOrganizationId, mVariable, mStartDate, mEndDate).CaculateValue.ToString("0.00").Trim();
+
+                    mStructTable.Rows[i]["ComprehensivePowerConsumption"] = Value;
+                    mStructTable.Rows[i-1]["ComprehensivePowerConsumption"] = Value;
+                    mStructTable.Rows[i-2]["ComprehensivePowerConsumption"] = Value;
                 }
             }
 
@@ -105,12 +118,12 @@ namespace CustomStatisticalReport.Service
             for(int i=0;i<originalTable.Rows.Count;i++)
             {
                 if (originalTable.Rows[i]["OrganizationID"].ToString().Trim().Contains("clinker")) {
-                    table.Rows.Add(originalTable.Rows[i]["OrganizationID"], originalTable.Rows[i]["Name"],"生料制备", "rawMaterialsPreparation_ElectricityQuantity", null, "clinker_MixtureMaterialsOutput");
-                    table.Rows.Add(originalTable.Rows[i]["OrganizationID"], originalTable.Rows[i]["Name"],"煤粉制备", "coalPreparation_ElectricityQuantity", null, "clinker_PulverizedCoalOutput");
-                    table.Rows.Add(originalTable.Rows[i]["OrganizationID"], originalTable.Rows[i]["Name"],"熟料制备", "clinkerPreparation_ElectricityQuantity", null, "clinker_ClinkerOutput");            
+                    table.Rows.Add(originalTable.Rows[i]["OrganizationID"], originalTable.Rows[i]["Name"], "生料制备", "rawMaterialsPreparation_ElectricityQuantity", null, "clinker_MixtureMaterialsOutput");
+                    table.Rows.Add(originalTable.Rows[i]["OrganizationID"], originalTable.Rows[i]["Name"], "煤粉制备", "coalPreparation_ElectricityQuantity", null, "clinker_PulverizedCoalOutput");
+                    table.Rows.Add(originalTable.Rows[i]["OrganizationID"], originalTable.Rows[i]["Name"], "熟料制备", "clinkerPreparation_ElectricityQuantity", null, "clinker_ClinkerOutput", null, null, null, "clinker_ElectricityConsumption_Comprehensive");            
                 }
                 else if (originalTable.Rows[i]["OrganizationID"].ToString().Trim().Contains("cementmill")) {
-                    table.Rows.Add(originalTable.Rows[i]["OrganizationID"], originalTable.Rows[i]["Name"],"水泥制备", "cementPreparation_ElectricityQuantity", null, "cement_CementOutput");    
+                    table.Rows.Add(originalTable.Rows[i]["OrganizationID"], originalTable.Rows[i]["Name"], "水泥制备", "cementPreparation_ElectricityQuantity", null, "cement_CementOutput", null, null, null, "cementmill_ElectricityConsumption_Comprehensive");    
                 }                    
             }
             return table;
@@ -127,7 +140,8 @@ namespace CustomStatisticalReport.Service
             structrueTable.Columns.Add("MaterialWeight", typeof(decimal));
             structrueTable.Columns.Add("PowerConsumption", typeof(decimal));
             structrueTable.Columns.Add("CalculationPowerConsumption", typeof(decimal));
-            structrueTable.Columns.Add("ComprehensivePowerConsumption", typeof(decimal));
+            structrueTable.Columns.Add("ComprehensivePowerConsumptionVariable", typeof(string));
+            structrueTable.Columns.Add("ComprehensivePowerConsumption", typeof(string));
             return structrueTable;       
         }
     }
