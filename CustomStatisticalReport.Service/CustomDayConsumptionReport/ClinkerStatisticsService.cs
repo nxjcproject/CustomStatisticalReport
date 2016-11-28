@@ -184,8 +184,9 @@ namespace CustomStatisticalReport.Service.CustomDayConsumptionReport
         {
             string mySql = @"SELECT OrganizationID, LevelCode, Name, Type, LevelType
                                     FROM      system_Organization as A
-                                    WHERE   (Type = '熟料' OR LevelCode in (select substring(LevelCode,1,3) from system_Organization where Type='熟料')) 
-                                       AND  ({0})
+                                    WHERE   (Type = '熟料' OR
+                                            Type = '分公司') AND
+                                            ({0})
                                     ORDER BY OrganizationID, LevelCode";
             StringBuilder myBuilder = new StringBuilder();
             foreach (string item in levelCodes)

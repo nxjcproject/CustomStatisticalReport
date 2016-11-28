@@ -20,15 +20,3 @@ C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomSta
 C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.csprojResolveAssemblyReference.cache
 C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.dll
 C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.pdb
-D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Service.dll
-D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Service.pdb
-D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Infrastructure.dll
-D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Infrastructure.pdb
-D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\RunIndicators.pdb
-D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.csprojResolveAssemblyReference.cache
-D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.dll
-D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.pdb
-D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\Monitor_shell.Service.dll
-D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\StatisticalReport.Infrastructure.dll
-D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\Monitor_shell.Infrastructure.dll
-D:\GitProjectProgram\亮哥_NXJC\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\EnergyConsumption.dll

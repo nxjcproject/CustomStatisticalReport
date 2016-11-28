@@ -56,113 +56,120 @@ function Loadtreegrid(type, myData) {
 }
 
 function QueryReportFun() {
-    var m_QueryDate = $('#DatetimeF').datebox('getValue');
+    var m_QueryDateString = $('#DatetimeF').datebox('getValue');
+    var m_QueryDateNumber = m_QueryDateString.replace(/\-/g, "");
+    var m_CurrentDate = new Date();
+    var m_CurrentDataNumber = m_CurrentDate.getFullYear().toString() + (m_CurrentDate.getMonth() + 1).toString() + m_CurrentDate.getDate().toString();
     var m_OrganizationId = $('#OrganizationIdF').val();
-    $.ajax({
-        type: "POST",
-        url: "DailyProduction.aspx/GetDailyProductionData",
-        data: '{myOrganizationId: "' + m_OrganizationId + '", myDateTime: "' + m_QueryDate + '"}',
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (msg) {
-            var m_MsgData = jQuery.parseJSON(msg.d);
-            if (m_MsgData != null && m_MsgData != undefined) {
-                for (var i = 0; i < m_MsgData.length; i++) {
-                    var m_Output_Plan = 0.0;
-                    var m_RunTime_Plan = 0.0;
-                    var m_TimeOutputD_Plan = 0.0;
-                    var m_RunRateD_Plan = 0.0;
-                    var m_Output_Day = 0.0;
-                    var m_RunTime_Day = 0.0;
-                    var m_TimeOutputD_Day = 0.0;
-                    var m_RunRateD_Day = 0.0;
-                    var m_Output_Month = 0.0;
-                    var m_RunTime_Month = 0.0;
-                    var m_TimeOutputD_Month = 0.0;
-                    var m_RunRateD_Month = 0.0;
-                    var m_Output_Year = 0.0;
-                    var m_RunTime_Year = 0.0;
-                    var m_TimeOutputD_Year = 0.0;
-                    var m_RunRateD_Year = 0.0;
-                    for (var j = 0; j < m_MsgData[i].children.length; j++) {
-                        /////////计划///////////
-                        m_Output_Plan = m_Output_Plan + parseFloat(m_MsgData[i].children[j].Output_Plan);
-                        m_RunTime_Plan = m_RunTime_Plan + parseFloat(m_MsgData[i].children[j].RunTime_Plan);
-                        if (parseFloat(m_MsgData[i].children[j].TimeOutput_Plan) != 0) {
-                            m_TimeOutputD_Plan = m_TimeOutputD_Plan + parseFloat(m_MsgData[i].children[j].Output_Plan) / parseFloat(m_MsgData[i].children[j].TimeOutput_Plan);
+    if (m_QueryDateNumber < m_CurrentDataNumber) {
+        $.ajax({
+            type: "POST",
+            url: "DailyProduction.aspx/GetDailyProductionData",
+            data: '{myOrganizationId: "' + m_OrganizationId + '", myDateTime: "' + m_QueryDateString + '"}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (msg) {
+                var m_MsgData = jQuery.parseJSON(msg.d);
+                if (m_MsgData != null && m_MsgData != undefined) {
+                    for (var i = 0; i < m_MsgData.length; i++) {
+                        var m_Output_Plan = 0.0;
+                        var m_RunTime_Plan = 0.0;
+                        var m_TimeOutputD_Plan = 0.0;
+                        var m_RunRateD_Plan = 0.0;
+                        var m_Output_Day = 0.0;
+                        var m_RunTime_Day = 0.0;
+                        var m_TimeOutputD_Day = 0.0;
+                        var m_RunRateD_Day = 0.0;
+                        var m_Output_Month = 0.0;
+                        var m_RunTime_Month = 0.0;
+                        var m_TimeOutputD_Month = 0.0;
+                        var m_RunRateD_Month = 0.0;
+                        var m_Output_Year = 0.0;
+                        var m_RunTime_Year = 0.0;
+                        var m_TimeOutputD_Year = 0.0;
+                        var m_RunRateD_Year = 0.0;
+                        for (var j = 0; j < m_MsgData[i].children.length; j++) {
+                            /////////计划///////////
+                            m_Output_Plan = m_Output_Plan + parseFloat(m_MsgData[i].children[j].Output_Plan);
+                            m_RunTime_Plan = m_RunTime_Plan + parseFloat(m_MsgData[i].children[j].RunTime_Plan);
+                            if (parseFloat(m_MsgData[i].children[j].TimeOutput_Plan) != 0) {
+                                m_TimeOutputD_Plan = m_TimeOutputD_Plan + parseFloat(m_MsgData[i].children[j].Output_Plan) / parseFloat(m_MsgData[i].children[j].TimeOutput_Plan);
+                            }
+                            if (parseFloat(m_MsgData[i].children[j].RunRate_Plan) != 0) {
+                                m_RunRateD_Plan = m_RunRateD_Plan + parseFloat(m_MsgData[i].children[j].RunTime_Plan) / parseFloat(m_MsgData[i].children[j].RunRate_Plan);
+                            }
+                            /////////日统计/////////
+                            m_Output_Day = m_Output_Day + parseFloat(m_MsgData[i].children[j].Output_Day);
+                            m_RunTime_Day = m_RunTime_Day + parseFloat(m_MsgData[i].children[j].RunTime_Day);
+                            if (parseFloat(m_MsgData[i].children[j].TimeOutput_Day) != 0) {
+                                m_TimeOutputD_Day = m_TimeOutputD_Day + parseFloat(m_MsgData[i].children[j].Output_Day) / parseFloat(m_MsgData[i].children[j].TimeOutput_Day);
+                            }
+                            if (parseFloat(m_MsgData[i].children[j].RunRate_Day) != 0) {
+                                m_RunRateD_Day = m_RunRateD_Day + parseFloat(m_MsgData[i].children[j].RunTime_Day) / parseFloat(m_MsgData[i].children[j].RunRate_Day);
+                            }
+                            /////////月统计/////////
+                            m_Output_Month = m_Output_Month + parseFloat(m_MsgData[i].children[j].Output_Month);
+                            m_RunTime_Month = m_RunTime_Month + parseFloat(m_MsgData[i].children[j].RunTime_Month);
+                            if (parseFloat(m_MsgData[i].children[j].TimeOutput_Month) != 0) {
+                                m_TimeOutputD_Month = m_TimeOutputD_Month + parseFloat(m_MsgData[i].children[j].Output_Month) / parseFloat(m_MsgData[i].children[j].TimeOutput_Month);
+                            }
+                            if (parseFloat(m_MsgData[i].children[j].RunRate_Month) != 0) {
+                                m_RunRateD_Month = m_RunRateD_Month + parseFloat(m_MsgData[i].children[j].RunTime_Month) / parseFloat(m_MsgData[i].children[j].RunRate_Month);
+                            }
+                            /////////年统计/////////
+                            m_Output_Year = m_Output_Year + parseFloat(m_MsgData[i].children[j].Output_Year);
+                            m_RunTime_Year = m_RunTime_Year + parseFloat(m_MsgData[i].children[j].RunTime_Year);
+                            if (parseFloat(m_MsgData[i].children[j].TimeOutput_Year) != 0) {
+                                m_TimeOutputD_Year = m_TimeOutputD_Year + parseFloat(m_MsgData[i].children[j].Output_Year) / parseFloat(m_MsgData[i].children[j].TimeOutput_Year);
+                            }
+                            if (parseFloat(m_MsgData[i].children[j].RunRate_Year) != 0) {
+                                m_RunRateD_Year = m_RunRateD_Year + parseFloat(m_MsgData[i].children[j].RunTime_Year) / parseFloat(m_MsgData[i].children[j].RunRate_Year);
+                            }
                         }
-                        if (parseFloat(m_MsgData[i].children[j].RunRate_Plan) != 0) {
-                            m_RunRateD_Plan = m_RunRateD_Plan + parseFloat(m_MsgData[i].children[j].RunTime_Plan) / parseFloat(m_MsgData[i].children[j].RunRate_Plan);
+                        ////////////计划/////////////
+                        m_MsgData[i].Output_Plan = m_Output_Plan;
+                        m_MsgData[i].RunTime_Plan = m_RunTime_Plan;
+                        if (m_TimeOutputD_Plan != 0) {
+                            m_MsgData[i].TimeOutput_Plan = (m_Output_Plan / m_TimeOutputD_Plan).toFixed(2);
                         }
-                        /////////日统计/////////
-                        m_Output_Day = m_Output_Day + parseFloat(m_MsgData[i].children[j].Output_Day);
-                        m_RunTime_Day = m_RunTime_Day + parseFloat(m_MsgData[i].children[j].RunTime_Day);
-                        if (parseFloat(m_MsgData[i].children[j].TimeOutput_Day) != 0) {
-                            m_TimeOutputD_Day = m_TimeOutputD_Day + parseFloat(m_MsgData[i].children[j].Output_Day) / parseFloat(m_MsgData[i].children[j].TimeOutput_Day);
+                        if (m_RunRateD_Plan != 0) {
+                            m_MsgData[i].RunRate_Plan = (m_RunTime_Plan / m_RunRateD_Plan).toFixed(2);
                         }
-                        if (parseFloat(m_MsgData[i].children[j].RunRate_Day) != 0) {
-                            m_RunRateD_Day = m_RunRateD_Day + parseFloat(m_MsgData[i].children[j].RunTime_Day) / parseFloat(m_MsgData[i].children[j].RunRate_Day);
+                        ////////////日统计/////////////
+                        m_MsgData[i].Output_Day = m_Output_Day;
+                        m_MsgData[i].RunTime_Day = m_RunTime_Day;
+                        if (m_TimeOutputD_Day != 0) {
+                            m_MsgData[i].TimeOutput_Day = (m_Output_Day / m_TimeOutputD_Day).toFixed(2);
                         }
-                        /////////月统计/////////
-                        m_Output_Month = m_Output_Month + parseFloat(m_MsgData[i].children[j].Output_Month);
-                        m_RunTime_Month = m_RunTime_Month + parseFloat(m_MsgData[i].children[j].RunTime_Month);
-                        if (parseFloat(m_MsgData[i].children[j].TimeOutput_Month) != 0) {
-                            m_TimeOutputD_Month = m_TimeOutputD_Month + parseFloat(m_MsgData[i].children[j].Output_Month) / parseFloat(m_MsgData[i].children[j].TimeOutput_Month);
+                        if (m_RunRateD_Day != 0) {
+                            m_MsgData[i].RunRate_Day = (m_RunTime_Day / m_RunRateD_Day).toFixed(2);
                         }
-                        if (parseFloat(m_MsgData[i].children[j].RunRate_Month) != 0) {
-                            m_RunRateD_Month = m_RunRateD_Month + parseFloat(m_MsgData[i].children[j].RunTime_Month) / parseFloat(m_MsgData[i].children[j].RunRate_Month);
+                        ////////////月统计/////////////
+                        m_MsgData[i].Output_Month = m_Output_Month;
+                        m_MsgData[i].RunTime_Month = m_RunTime_Month;
+                        if (m_TimeOutputD_Month != 0) {
+                            m_MsgData[i].TimeOutput_Month = (m_Output_Month / m_TimeOutputD_Month).toFixed(2);
                         }
-                        /////////年统计/////////
-                        m_Output_Year = m_Output_Year + parseFloat(m_MsgData[i].children[j].Output_Year);
-                        m_RunTime_Year = m_RunTime_Year + parseFloat(m_MsgData[i].children[j].RunTime_Year);
-                        if (parseFloat(m_MsgData[i].children[j].TimeOutput_Year) != 0) {
-                            m_TimeOutputD_Year = m_TimeOutputD_Year + parseFloat(m_MsgData[i].children[j].Output_Year) / parseFloat(m_MsgData[i].children[j].TimeOutput_Year);
+                        if (m_RunRateD_Month != 0) {
+                            m_MsgData[i].RunRate_Month = (m_RunTime_Month / m_RunRateD_Month).toFixed(2);
                         }
-                        if (parseFloat(m_MsgData[i].children[j].RunRate_Year) != 0) {
-                            m_RunRateD_Year = m_RunRateD_Year + parseFloat(m_MsgData[i].children[j].RunTime_Year) / parseFloat(m_MsgData[i].children[j].RunRate_Year);
+                        ////////////年统计/////////////
+                        m_MsgData[i].Output_Year = m_Output_Year;
+                        m_MsgData[i].RunTime_Year = m_RunTime_Year;
+                        if (m_TimeOutputD_Year != 0) {
+                            m_MsgData[i].TimeOutput_Year = (m_Output_Year / m_TimeOutputD_Year).toFixed(2);
                         }
-                    }
-                    ////////////计划/////////////
-                    m_MsgData[i].Output_Plan = m_Output_Plan;
-                    m_MsgData[i].RunTime_Plan = m_RunTime_Plan;
-                    if(m_TimeOutputD_Plan != 0)
-                    {
-                        m_MsgData[i].TimeOutput_Plan = (m_Output_Plan / m_TimeOutputD_Plan).toFixed(2);
-                    }
-                    if (m_RunRateD_Plan != 0) {
-                        m_MsgData[i].RunRate_Plan = (m_RunTime_Plan / m_RunRateD_Plan).toFixed(2);
-                    }
-                    ////////////日统计/////////////
-                    m_MsgData[i].Output_Day = m_Output_Day;
-                    m_MsgData[i].RunTime_Day = m_RunTime_Day;
-                    if (m_TimeOutputD_Day != 0) {
-                        m_MsgData[i].TimeOutput_Day = (m_Output_Day / m_TimeOutputD_Day).toFixed(2);
-                    }
-                    if (m_RunRateD_Day != 0) {
-                        m_MsgData[i].RunRate_Day = (m_RunTime_Day / m_RunRateD_Day).toFixed(2);
-                    }
-                    ////////////月统计/////////////
-                    m_MsgData[i].Output_Month = m_Output_Month;
-                    m_MsgData[i].RunTime_Month = m_RunTime_Month;
-                    if (m_TimeOutputD_Month != 0) {
-                        m_MsgData[i].TimeOutput_Month = (m_Output_Month / m_TimeOutputD_Month).toFixed(2);
-                    }
-                    if (m_RunRateD_Month != 0) {
-                        m_MsgData[i].RunRate_Month = (m_RunTime_Month / m_RunRateD_Month).toFixed(2);
-                    }
-                    ////////////年统计/////////////
-                    m_MsgData[i].Output_Year = m_Output_Year;
-                    m_MsgData[i].RunTime_Year = m_RunTime_Year;
-                    if (m_TimeOutputD_Year != 0) {
-                        m_MsgData[i].TimeOutput_Year = (m_Output_Year / m_TimeOutputD_Year).toFixed(2);
-                    }
-                    if (m_RunRateD_Year != 0) {
-                        m_MsgData[i].RunRate_Year = (m_RunTime_Year / m_RunRateD_Year).toFixed(2);
+                        if (m_RunRateD_Year != 0) {
+                            m_MsgData[i].RunRate_Year = (m_RunTime_Year / m_RunRateD_Year).toFixed(2);
+                        }
                     }
                 }
+                $('#DailyProduction').treegrid("loadData", m_MsgData);
+                $('#DailyProduction').treegrid("collapseAll");
             }
-            $('#DailyProduction').treegrid("loadData", m_MsgData);
-            $('#DailyProduction').treegrid("collapseAll");
-        }
-    });
+        });
+    }
+    else {
+        alert("请选择今天以前的日期!");
+    }
 }

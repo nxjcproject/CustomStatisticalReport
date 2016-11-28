@@ -1607,7 +1607,6 @@
     <Content Include="lib\pllib\themes\jquery.jqplot.min.css" />
     <Content Include="UI_CustomStatisticalReport\css\page\test.css" />
     <Content Include="UI_CustomStatisticalReport\DayConsumptionReport.aspx" />
-    <Content Include="UI_CustomStatisticalReport\js\common\MergeCell.js" />
     <Content Include="UI_CustomStatisticalReport\js\page\DayConsumptionReport.js" />
     <Content Include="UI_CustomStatisticalReport\js\page\FormulaParse.js" />
     <Content Include="UI_CustomStatisticalReport\js\page\ReportDaily_Production.js" />
@@ -1615,7 +1614,6 @@
     <Content Include="UI_CustomStatisticalReport\js\page\report_BalanceStatistics.js" />
     <Content Include="UI_CustomStatisticalReport\js\page\report_CementStatistics.js" />
     <Content Include="UI_CustomStatisticalReport\js\page\report_ClinkerStatistics.js" />
-    <Content Include="UI_CustomStatisticalReport\js\page\report_PowerConsumptionComparison.js" />
     <Content Include="UI_CustomStatisticalReport\js\page\report_QueryBalanceStatistics.js" />
     <Content Include="UI_CustomStatisticalReport\ProductionDailyReport\DailyProduction.aspx" />
     <Content Include="UI_CustomStatisticalReport\ProductionDailyReport\InventoryInformation.aspx" />
@@ -1651,7 +1649,6 @@
     <Content Include="UI_CustomStatisticalReport\report_BalanceStatistics.aspx" />
     <Content Include="UI_CustomStatisticalReport\report_CementStatistics.aspx" />
     <Content Include="UI_CustomStatisticalReport\report_ClinkerStatistics.aspx" />
-    <Content Include="UI_CustomStatisticalReport\report_PowerConsumptionComparison.aspx" />
     <Content Include="UI_CustomStatisticalReport\report_QueryBalanceStatistics.aspx" />
     <Content Include="UI_CustomStatisticalReport\test.aspx" />
     <Content Include="Web.config">
@@ -1768,13 +1765,6 @@
     </Compile>
     <Compile Include="UI_CustomStatisticalReport\report_ClinkerStatistics.aspx.designer.cs">
       <DependentUpon>report_ClinkerStatistics.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UI_CustomStatisticalReport\report_PowerConsumptionComparison.aspx.cs">
-      <DependentUpon>report_PowerConsumptionComparison.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UI_CustomStatisticalReport\report_PowerConsumptionComparison.aspx.designer.cs">
-      <DependentUpon>report_PowerConsumptionComparison.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI_CustomStatisticalReport\report_QueryBalanceStatistics.aspx.cs">
       <DependentUpon>report_QueryBalanceStatistics.aspx</DependentUpon>

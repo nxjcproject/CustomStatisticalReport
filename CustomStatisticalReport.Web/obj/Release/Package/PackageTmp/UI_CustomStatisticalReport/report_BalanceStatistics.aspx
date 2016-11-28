@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>生产线：</td>
                                         <td>
-                                            <input id="productLineName" class="easyui-textbox" style="width: 100px;" readonly="readonly" /><input id="organizationId" readonly="readonly" style="display: none;" /></td>
+                                            <input id="productLineName" class="easyui-textbox" style="width: 100px;" readonly="true" /><input id="organizationId" readonly="true" style="display: none;" /></td>
                                         <%--<td>时间：</td>
                                         <td>
                                             <input id="datetime" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width: 100px;" /></td>--%>
