@@ -28,7 +28,7 @@ function QueryReportFun() {
         $.ajax({
             type: "POST",
             url: "report_PowerConsumptionComparison.aspx/GetReportData",
-            data: '{organizationId: "' + m_OrganizationId + '", mStartDate: "' + mStartDate + '", mEndDate: "' + mStartDate + '"}',
+            data: '{organizationId: "' + m_OrganizationId + '", mStartDate: "' + mStartDate + '", mEndDate: "' + mEndDate + '"}',
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (msg) {
