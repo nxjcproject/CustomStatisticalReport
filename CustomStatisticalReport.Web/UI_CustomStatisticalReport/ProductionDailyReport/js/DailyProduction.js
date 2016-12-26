@@ -62,6 +62,10 @@ function QueryReportFun() {
     var m_CurrentDataNumber = m_CurrentDate.getFullYear().toString() + (m_CurrentDate.getMonth() + 1).toString() + m_CurrentDate.getDate().toString();
     var m_OrganizationId = $('#OrganizationIdF').val();
     if (m_QueryDateNumber < m_CurrentDataNumber) {
+        var win = $.messager.progress({
+            title: '请稍后',
+            msg: '数据载入中...'
+        });
         $.ajax({
             type: "POST",
             url: "DailyProduction.aspx/GetDailyProductionData",
@@ -69,6 +73,7 @@ function QueryReportFun() {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (msg) {
+                $.messager.progress('close');
                 var m_MsgData = jQuery.parseJSON(msg.d);
                 if (m_MsgData != null && m_MsgData != undefined) {
                     for (var i = 0; i < m_MsgData.length; i++) {
@@ -166,6 +171,9 @@ function QueryReportFun() {
                 }
                 $('#DailyProduction').treegrid("loadData", m_MsgData);
                 $('#DailyProduction').treegrid("collapseAll");
+            },
+            beforeSend: function (XMLHttpRequest) {
+                win;
             }
         });
     }

@@ -23,7 +23,10 @@ function QueryReportFun() {
     SelectOrganizationName = $('#TextBox_OrganizationName').textbox('getText');
     var mStartDate= $("#startDate").datebox("getValue");;
     var mEndDate = $("#endDate").datebox("getValue");;
-    var megar = $.messager.alert('提示','数据加载中...');
+    var win = $.messager.progress({
+        title: '请稍后',
+        msg: '数据载入中...'
+    });
     if (m_OrganizationId != undefined && m_OrganizationId != "" && mStartDate != undefined && mStartDate != "" && mEndDate != undefined && mEndDate != "") {
         $.ajax({
             type: "POST",
@@ -32,7 +35,7 @@ function QueryReportFun() {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (msg) {
-                megar.window('close');
+                $.messager.progress('close');
                 var m_MsgData = jQuery.parseJSON(msg.d);
                 if (m_MsgData.total == 0) {
                     $('#datagrid_ReportTable').datagrid("loadData", []);
@@ -42,9 +45,10 @@ function QueryReportFun() {
                 }
             },
             beforeSend: function(XMLHttpRequest){
-                megar;
+                win;
             },
             error: function () {
+                $.messager.progress('close');
                 $("#datagrid_ReportTable").datagrid('loadData', []);
                 $.messager.alert('失败', '获取数据失败');
             }
@@ -72,11 +76,11 @@ function Loaddatagrid(myData) {
                // { width: '100', title: '变量ID', field: 'VariableId', hidden: true },
                 { width: '100', title: '组织机构层次码', field: 'OrganizationId', hidden: true },
               //  { width: '100', title: '层次码', field: 'LevelCode', hidden: true },                      
-                { width: '120', title: '电量', field: 'ElectricityQuantity' },
-                { width: '100', title: '产量', field: 'MaterialWeight'},
-                { width: '120', title: '电耗', field: 'PowerConsumption' },
-                { width: '100', title: '计算电耗', field: 'CalculationPowerConsumption' },
-                { width: '120', title: '综合电耗', field: 'ComprehensivePowerConsumption' }
+                { width: '80', title: '电量', field: 'ElectricityQuantity' },
+                { width: '80', title: '产量', field: 'MaterialWeight'},
+                { width: '80', title: '电耗', field: 'PowerConsumption' },
+                { width: '80', title: '计算电耗', field: 'CalculationPowerConsumption' },
+                { width: '80', title: '综合电耗', field: 'ComprehensivePowerConsumption' }
             ]],
             toolbar: '#toolbar_ReportTable'
         });

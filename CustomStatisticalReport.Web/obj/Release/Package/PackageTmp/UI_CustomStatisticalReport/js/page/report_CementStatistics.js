@@ -52,6 +52,10 @@ function loadGridData(myType, startDate, endDate) {
         $('#gridMain_ReportTemplate').datagrid('loadData', []);
     }
     else {
+        var win = $.messager.progress({
+            title: '请稍后',
+            msg: '数据载入中...'
+        });
         $.ajax({
             type: "POST",
             url: "report_CementStatistics.aspx/GetReportData",
@@ -59,12 +63,19 @@ function loadGridData(myType, startDate, endDate) {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (msg) {
+                $.messager.progress('close');
                 m_MsgData = jQuery.parseJSON(msg.d);
                 //_data = m_MsgData;
                 //InitializeGrid(m_MsgData);
                 $('#gridMain_ReportTemplate').datagrid('loadData', m_MsgData);
             },
-            error: handleError
+            beforeSend: function (XMLHttpRequest) {
+                win;
+            },
+            error: function () {
+                $.messager.progress('close');
+                handleError
+            }
         });
     }
 }

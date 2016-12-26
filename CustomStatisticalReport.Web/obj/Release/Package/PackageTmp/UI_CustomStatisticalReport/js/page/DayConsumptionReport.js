@@ -27,6 +27,10 @@ function QueryReportFun() {
     SelectOrganizationName = $('#TextBox_OrganizationName').textbox('getText');
     SelectDatetime = $("#datetime").datebox("getValue");
     if (m_OrganizationId != undefined && m_OrganizationId != "" && SelectDatetime != undefined && SelectDatetime != "") {
+        var win = $.messager.progress({
+            title: '请稍后',
+            msg: '数据载入中...'
+        });
         $.ajax({
             type: "POST",
             url: "DayConsumptionReport.aspx/GetReportData",
@@ -34,6 +38,7 @@ function QueryReportFun() {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (msg) {
+                $.messager.progress('close');
                 var m_MsgData = jQuery.parseJSON(msg.d);
                 //$.each(m_Data, function (i, item) {
                 //    var value = Number(item.Value)
@@ -66,7 +71,7 @@ function LoadTreeGrid(myData) {
             rownumbers: true,
             singleSelect: true,
             frozenColumns: [[{
-                width: '220',
+                width: '180',
                 title: '区域及工序',
                 field: 'Name'
             }
@@ -87,11 +92,11 @@ function LoadTreeGrid(myData) {
                 field: 'LevelCode',
                 hidden: true
             }, {
-                width: '120',
+                width: '100',
                 title: '用电量',
                 field: 'DayElectricityQuantity'
             }, {
-                width: '120',
+                width: '100',
                 title: '月累计用电量',
                 field: 'TotalElectricityQuantity'
             }, {
@@ -100,23 +105,23 @@ function LoadTreeGrid(myData) {
                 field: 'Denominator',
                 hidden: true
             }, {
-                width: '100',
+                width: '80',
                 title: '名称',
                 field: 'MaterialName'
             }, {
-                width: '120',
+                width: '80',
                 title: '生产量',
                 field: 'DayOutput'
             }, {
-                width: '120',
+                width: '80',
                 title: '月累计生产量',
                 field: 'TotalOutput'
             }, {
-                width: '120',
+                width: '80',
                 title: '电耗',
                 field: 'DayElectricityConsumption'
             }, {
-                width: '120',
+                width: '80',
                 title: '月累计电耗',
                 field: 'TotalElectricityConsumption'
             }]],

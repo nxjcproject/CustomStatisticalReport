@@ -143,7 +143,10 @@ function LoadData() {
     StatisticalType = $("#cc").combobox("getValue");
 
     var queryDate = $("#datetime").datebox("getValue");//查询时间
-
+    var win = $.messager.progress({
+        title: '请稍后',
+        msg: '数据载入中...'
+    });
     $.ajax({
         type: "POST",
         url: "report_QueryBalanceStatistics.aspx/GetReportDataSet",
@@ -151,8 +154,12 @@ function LoadData() {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (msg) {
+            $.messager.progress('close');
             dataSet = msg.d;
             FillCell(msg.d);
+        },
+        beforeSend: function (XMLHttpRequest) {
+            win;
         }
     });
 }

@@ -24,7 +24,7 @@
 </head>
 <body>
     <div class="easyui-layout" data-options="fit:true,border:false">
-        <div data-options="region:'west',split:true" style="width: 230px;">
+        <div data-options="region:'west',split:true" style="width: 150px;">
             <uc1:OrganisationTree ID="OrganisationTree_ProductionLine" runat="server" />
         </div>
         <div data-options="region:'center',border:false">
@@ -51,14 +51,14 @@
                                         </td>
                                         <td>本次抄表：<select id="nowId" class="easyui-combogrid" style="width: 150px"></select>
                                         </td>
-                                        <td>
+                                        <%--<td>
                                             <a href="#" style="margin-left: 10px" class="easyui-linkbutton" data-options="iconCls:'ext-icon-calculator',plain:true" onclick="CalculateDiffValue();">计算差值：</a>
                                             <span id="diffValueId" style="width: 205px; border: 1px;"></span>
                                         </td>
                                         <td>
                                             <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"
                                                 onclick="QueryReportFun();">查询</a>
-                                        </td>
+                                        </td>--%>
                                         <%--<td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"
                                             onclick="QueryReportFun();">查询</a>
                                         </td>
@@ -76,6 +76,15 @@
                             <td>
                                 <table>
                                     <tr>
+                                        <td>
+                                            <a href="#" style="margin-left: 10px" class="easyui-linkbutton" data-options="iconCls:'ext-icon-calculator',plain:true" onclick="CalculateDiffValue();">计算差值：</a>
+                                            <span id="diffValueId" style="width: 205px; border: 1px;"></span>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"
+                                                onclick="QueryReportFun();">查询</a>
+                                        </td>
+                                        <td style="width: 100px;"></td>
                                         <td>
                                             请选择保存时间：<input id="saveDateTime" class="easyui-datebox" data-options="formatter:myformatter,parser:myparser" style="width: 100px;" />
                                         </td>
