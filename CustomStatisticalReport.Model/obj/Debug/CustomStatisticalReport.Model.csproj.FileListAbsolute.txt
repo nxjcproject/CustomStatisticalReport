@@ -1,0 +1,5 @@
+C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Model\bin\Debug\CustomStatisticalReport.Model.dll
+C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Model\bin\Debug\CustomStatisticalReport.Model.pdb
+C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Model\obj\Debug\CustomStatisticalReport.Model.dll
+C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Model\obj\Debug\CustomStatisticalReport.Model.pdb
+C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Model\obj\Debug\CustomStatisticalReport.Model.csprojResolveAssemblyReference.cache

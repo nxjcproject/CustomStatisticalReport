@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomStatisticalReport.Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomStatisticalReport.Web", "CustomStatisticalReport.Web\CustomStatisticalReport.Web.csproj", "{C6860336-4B84-4327-8271-5DE17D5C1C94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomStatisticalReport.Model", "CustomStatisticalReport.Model\CustomStatisticalReport.Model.csproj", "{933F518C-FA9B-4D9E-AE82-9F07C27689BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C6860336-4B84-4327-8271-5DE17D5C1C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6860336-4B84-4327-8271-5DE17D5C1C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6860336-4B84-4327-8271-5DE17D5C1C94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{933F518C-FA9B-4D9E-AE82-9F07C27689BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{933F518C-FA9B-4D9E-AE82-9F07C27689BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{933F518C-FA9B-4D9E-AE82-9F07C27689BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{933F518C-FA9B-4D9E-AE82-9F07C27689BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,5 +41,6 @@ Global
 		{5DB5395C-85E1-4B0B-A211-55DAEE058850} = {5B7B8004-6370-4508-A5C2-94019F447FD3}
 		{8E200A55-E6B1-4A05-936F-5E3A42B5CDDB} = {5B7B8004-6370-4508-A5C2-94019F447FD3}
 		{C6860336-4B84-4327-8271-5DE17D5C1C94} = {5B7B8004-6370-4508-A5C2-94019F447FD3}
+		{933F518C-FA9B-4D9E-AE82-9F07C27689BB} = {5B7B8004-6370-4508-A5C2-94019F447FD3}
 	EndGlobalSection
 EndGlobal

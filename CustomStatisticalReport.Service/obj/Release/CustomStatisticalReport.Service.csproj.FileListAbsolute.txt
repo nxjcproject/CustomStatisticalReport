@@ -65,3 +65,8 @@ H:\徐一帅项目\第一轮修改\CustomStatisticalReport-master\CustomStatisti
 H:\徐一帅项目\第一轮修改\CustomStatisticalReport-master\CustomStatisticalReport-master\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.csprojResolveAssemblyReference.cache
 H:\徐一帅项目\第一轮修改\CustomStatisticalReport-master\CustomStatisticalReport-master\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.dll
 H:\徐一帅项目\第一轮修改\CustomStatisticalReport-master\CustomStatisticalReport-master\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.pdb
+C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Model.dll
+C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\StatisticalReport.Infrastructure.dll
+C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\Monitor_shell.Infrastructure.dll
+C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\EnergyConsumption.dll
+C:\工作\编程\恒拓软件\三层框架V3.1\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Model.pdb

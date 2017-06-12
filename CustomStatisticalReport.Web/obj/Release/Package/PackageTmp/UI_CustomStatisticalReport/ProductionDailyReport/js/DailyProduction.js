@@ -26,7 +26,7 @@ function Loadtreegrid(type, myData) {
             fit: true,
             frozenColumns: [[
                 { field: 'id', title: 'Id', width: 110, align: 'center', hidden:true },
-                { field: 'text', title: '名称', width: 130, align: 'center' }
+                { field: 'text', title: '名称', width: 150, align: 'left' }
             ]],
             columns: [[
                  { title: '月计划', colspan: 4, width: 280, align: 'center' },
@@ -131,9 +131,10 @@ function QueryReportFun() {
                                 m_RunRateD_Year = m_RunRateD_Year + parseFloat(m_MsgData[i].children[j].RunTime_Year) / parseFloat(m_MsgData[i].children[j].RunRate_Year);
                             }
                         }
+
                         ////////////计划/////////////
-                        m_MsgData[i].Output_Plan = m_Output_Plan;
-                        m_MsgData[i].RunTime_Plan = m_RunTime_Plan;
+                        m_MsgData[i].Output_Plan = m_Output_Plan.toFixed(2);
+                        m_MsgData[i].RunTime_Plan = m_RunTime_Plan.toFixed(2);
                         if (m_TimeOutputD_Plan != 0) {
                             m_MsgData[i].TimeOutput_Plan = (m_Output_Plan / m_TimeOutputD_Plan).toFixed(2);
                         }
@@ -141,8 +142,8 @@ function QueryReportFun() {
                             m_MsgData[i].RunRate_Plan = (m_RunTime_Plan / m_RunRateD_Plan).toFixed(2);
                         }
                         ////////////日统计/////////////
-                        m_MsgData[i].Output_Day = m_Output_Day;
-                        m_MsgData[i].RunTime_Day = m_RunTime_Day;
+                        m_MsgData[i].Output_Day = m_Output_Day.toFixed(2);
+                        m_MsgData[i].RunTime_Day = m_RunTime_Day.toFixed(2);
                         if (m_TimeOutputD_Day != 0) {
                             m_MsgData[i].TimeOutput_Day = (m_Output_Day / m_TimeOutputD_Day).toFixed(2);
                         }
@@ -150,8 +151,8 @@ function QueryReportFun() {
                             m_MsgData[i].RunRate_Day = (m_RunTime_Day / m_RunRateD_Day).toFixed(2);
                         }
                         ////////////月统计/////////////
-                        m_MsgData[i].Output_Month = m_Output_Month;
-                        m_MsgData[i].RunTime_Month = m_RunTime_Month;
+                        m_MsgData[i].Output_Month = m_Output_Month.toFixed(2);
+                        m_MsgData[i].RunTime_Month = m_RunTime_Month.toFixed(2);
                         if (m_TimeOutputD_Month != 0) {
                             m_MsgData[i].TimeOutput_Month = (m_Output_Month / m_TimeOutputD_Month).toFixed(2);
                         }
@@ -159,8 +160,8 @@ function QueryReportFun() {
                             m_MsgData[i].RunRate_Month = (m_RunTime_Month / m_RunRateD_Month).toFixed(2);
                         }
                         ////////////年统计/////////////
-                        m_MsgData[i].Output_Year = m_Output_Year;
-                        m_MsgData[i].RunTime_Year = m_RunTime_Year;
+                        m_MsgData[i].Output_Year = m_Output_Year.toFixed(2);
+                        m_MsgData[i].RunTime_Year = m_RunTime_Year.toFixed(2);
                         if (m_TimeOutputD_Year != 0) {
                             m_MsgData[i].TimeOutput_Year = (m_Output_Year / m_TimeOutputD_Year).toFixed(2);
                         }

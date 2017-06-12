@@ -90,6 +90,10 @@
       <Project>{5db5395c-85e1-4b0b-a211-55daee058850}</Project>
       <Name>CustomStatisticalReport.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CustomStatisticalReport.Model\CustomStatisticalReport.Model.csproj">
+      <Project>{933f518c-fa9b-4d9e-ae82-9f07c27689bb}</Project>
+      <Name>CustomStatisticalReport.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
