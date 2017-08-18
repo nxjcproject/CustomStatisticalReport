@@ -27,6 +27,7 @@ namespace CustomStatisticalReport.Service
 		                        ,sum(B.[TotalPeakValleyFlat]) as sumValue from [NXJC].[dbo].[tz_Balance] A,[NXJC].[dbo].[balance_Energy] B
                                 where A.OrganizationID like @organizationId+'%'
                                 and A.[BalanceId]=B.[KeyId]
+                                and [StaticsCycle]='day'
                                 and A.[TimeStamp]>=@mStartDate and A.[TimeStamp]<=@mEndDate
                                 and (B.[ValueType]='ElectricityQuantity' or B.[ValueType]='MaterialWeight')
                                 and( B.OrganizationID like '%clinker%' or B.OrganizationID like '%cementmill%')

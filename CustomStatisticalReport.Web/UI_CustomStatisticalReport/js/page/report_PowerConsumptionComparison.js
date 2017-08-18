@@ -1,4 +1,5 @@
 ﻿var SelectOrganizationName = "";
+var SelectDatetime = "";
 $(function () {
     Loaddatagrid({ "rows": [], "total": 0 });
     InitDate();
@@ -23,6 +24,7 @@ function QueryReportFun() {
     SelectOrganizationName = $('#TextBox_OrganizationName').textbox('getText');
     var mStartDate= $("#startDate").datebox("getValue");;
     var mEndDate = $("#endDate").datebox("getValue");;
+    SelectDatetime = mStartDate + ' 至 ' + mEndDate;
     var win = $.messager.progress({
         title: '请稍后',
         msg: '数据载入中...'
@@ -80,7 +82,10 @@ function Loaddatagrid(myData) {
                 { width: '80', title: '产量', field: 'MaterialWeight'},
                 { width: '80', title: '电耗', field: 'PowerConsumption' },
                 { width: '80', title: '计算电耗', field: 'CalculationPowerConsumption' },
-                { width: '80', title: '综合电耗', field: 'ComprehensivePowerConsumption' }
+                { width: '80', title: '综合电耗', field: 'ComprehensivePowerConsumption' },
+                { width: '80', title: '', field: 'ElectricityQuantityVariable', hidden: true },//为了导出时不显示
+                { width: '80', title: '', field: 'MaterialWeightVariable', hidden: true },//为了导出时不显示
+                { width: '80', title: '', field: 'ComprehensivePowerConsumptionVariable', hidden: true },//为了导出时不显示
             ]],
             toolbar: '#toolbar_ReportTable'
         });
@@ -93,7 +98,7 @@ function RefreshFun() {
 }
 function ExportFileFun() {
     var m_FunctionName = "ExcelStream";
-    var m_Parameter1 = GetTreeTableHtml("datagrid_ReportTable", "能耗日报", "Name", SelectOrganizationName, SelectDatetime);
+    var m_Parameter1 = GetDataGridTableHtml("datagrid_ReportTable", "能耗日报", SelectDatetime);
     var m_Parameter2 = SelectOrganizationName;
 
     var m_ReplaceAlllt = new RegExp("<", "g");
@@ -129,7 +134,7 @@ function ExportFileFun() {
     form.remove();
 }
 function PrintFileFun() {
-    var m_ReportTableHtml = GetTreeTableHtml("datagrid_ReportTable", "能耗日报", "Name", SelectOrganizationName, SelectDatetime);
+    var m_ReportTableHtml = GetDataGridTableHtml("datagrid_ReportTable", "能耗日报", SelectDatetime);
     PrintHtml(m_ReportTableHtml);
 }
 

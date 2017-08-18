@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>电耗对比</title>
    <link rel="stylesheet" type="text/css" href="/lib/ealib/themes/gray/easyui.css" />
     <link rel="stylesheet" type="text/css" href="/lib/ealib/themes/icon.css" />
     <link rel="stylesheet" type="text/css" href="/lib/extlib/themes/syExtIcon.css" />
@@ -20,7 +20,7 @@
     <script type="text/javascript" src="/lib/ealib/extend/jquery.jqprint.js" charset="utf-8"></script>
     <script type="text/javascript" src="/js/common/PrintFile.js" charset="utf-8"></script> 
     <!--[if lt IE 8 ]><script type="text/javascript" src="/js/common/json2.min.js"></script><![endif]-->
- <script type="text/javascript" src="js/page/report_PowerConsumptionComparison.js"charset="utf-8"></script>
+    <script type="text/javascript" src="js/page/report_PowerConsumptionComparison.js"charset="utf-8"></script>
 </head>
 <body>
     <div class="easyui-layout" data-options="fit:true,border:false">
