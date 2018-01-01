@@ -32,16 +32,16 @@
                             <td>
                                 <table>                                   
                                     <tr>
-                                        <td>分公司</td>
+                                        <td>组织机构</td>
                                         <td style="width: 110px;">
                                             <input id="OrganizationNameF" class="easyui-textbox" style="width: 100px;" readonly="readonly" /><input id="OrganizationIdF" readonly="readonly" style="display: none;" />
                                         </td>
                                         <td>日报时间</td>
                                         <td style="width: 130px;">
-                                            <input id="DatetimeF" type="text" class="easyui-datebox"  required="required" style="width: 120px;" />
+                                            <input id="DatetimeF" type="text" class="easyui-datebox"  required="required" style="width: 110px;" />
                                                </td>
                                         <td>
-                                            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"
+                                            <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                                                 onclick="QueryReportFun();">查询</a>
                                         </td>
                                     </tr>

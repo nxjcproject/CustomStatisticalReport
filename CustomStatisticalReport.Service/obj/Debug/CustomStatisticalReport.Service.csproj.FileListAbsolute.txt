@@ -72,3 +72,13 @@ C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatis
 C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Debug\CustomStatisticalReport.Service.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Debug\CustomStatisticalReport.Service.dll
 C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Debug\CustomStatisticalReport.Service.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Debug\CustomStatisticalReport.Service.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Debug\CustomStatisticalReport.Service.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Debug\CustomStatisticalReport.Infrastructure.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Debug\CustomStatisticalReport.Model.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Debug\CustomStatisticalReport.Infrastructure.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Debug\CustomStatisticalReport.Model.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Debug\RunIndicators.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\obj\Debug\CustomStatisticalReport.Service.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\obj\Debug\CustomStatisticalReport.Service.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\obj\Debug\CustomStatisticalReport.Service.pdb

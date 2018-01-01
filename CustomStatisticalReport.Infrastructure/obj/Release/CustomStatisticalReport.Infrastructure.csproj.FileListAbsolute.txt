@@ -41,3 +41,9 @@ C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatis
 C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatisticalReport.Infrastructure\obj\Release\CustomStatisticalReport.Infrastructure.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatisticalReport.Infrastructure\obj\Release\CustomStatisticalReport.Infrastructure.dll
 C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatisticalReport.Infrastructure\obj\Release\CustomStatisticalReport.Infrastructure.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Infrastructure\bin\Release\CustomStatisticalReport.Infrastructure.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Infrastructure\bin\Release\CustomStatisticalReport.Infrastructure.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Infrastructure\bin\Release\AutoMapper.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Infrastructure\obj\Release\CustomStatisticalReport.Infrastructure.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Infrastructure\obj\Release\CustomStatisticalReport.Infrastructure.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Infrastructure\obj\Release\CustomStatisticalReport.Infrastructure.pdb

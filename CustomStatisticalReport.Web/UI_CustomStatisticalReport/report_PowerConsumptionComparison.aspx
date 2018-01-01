@@ -33,18 +33,18 @@
                         <td>
                             <table>
                                 <tr>
-                                    <td>组织机构：</td>
+                                    <td style="width: 55px; text-align: right;">组织机构</td>
                                     <td>
-                                        <input id="TextBox_OrganizationName" class="easyui-textbox" style="width: 120px;" readonly="readonly" /><input id="organizationId" readonly="readonly" style="display: none;" /></td>
-                                    <td  style="width:60px">开始时间：</td>
+                                        <input id="TextBox_OrganizationName" class="easyui-textbox" style="width: 100px;" readonly="readonly" /><input id="organizationId" readonly="readonly" style="display: none;" /></td>
+                                    <td style="width: 60px; text-align: right;">开始时间</td>
                                     <td>
-                                        <input id="startDate" type="text" class="easyui-datebox" required="required" style="width: 120px;" />
+                                        <input id="startDate" type="text" class="easyui-datebox" required="required" style="width: 100px;" />
                                     </td>     
-                                    <td>结束时间：</td>
+                                    <td style="width: 60px; text-align: right;">结束时间</td>
                                     <td>
-                                        <input id="endDate" type="text" class="easyui-datebox" required="required" style="width: 120px;" />
+                                        <input id="endDate" type="text" class="easyui-datebox" required="required" style="width: 100px;" />
                                     </td>
-                                    <td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"
+                                    <td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                                         onclick="QueryReportFun();">查询</a>
                                     </td>
                                 </tr>

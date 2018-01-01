@@ -71,7 +71,7 @@ function LoadTreeGrid(myData) {
             rownumbers: true,
             singleSelect: true,
             frozenColumns: [[{
-                width: '180',
+                width: '220',
                 title: '区域及工序',
                 field: 'Name'
             }
@@ -113,7 +113,7 @@ function LoadTreeGrid(myData) {
                 title: '生产量',
                 field: 'DayOutput'
             }, {
-                width: '80',
+                width: '100',
                 title: '月累计生产量',
                 field: 'TotalOutput'
             }, {

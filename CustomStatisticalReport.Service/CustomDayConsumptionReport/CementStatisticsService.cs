@@ -149,10 +149,12 @@ namespace CustomStatisticalReport.Service.CustomDayConsumptionReport
             StringBuilder htmlBuilder = new StringBuilder();
             string m_th = "<th data-options=\"field:'{0}',width:{1},align:'center'\" colspan=\"{2}\">{3}</th>";
             htmlBuilder.Append("<table id=\"gridMain_ReportTemplate\" class=\"easyui-datagrid\" data-options=\"toolbar:'#toolbar_ReportTemplate',rownumbers:true,singleSelect:true,fit:true\">");
-            htmlBuilder.Append("<thead>");
+            htmlBuilder.Append("<thead data-options=\"frozen:true\">");
             //生成第一行（分公司行）
             htmlBuilder.Append("<tr>");
-            htmlBuilder.Append("<th data-options=\"field:'Name',width:150\" rowspan=\"3\">名称</th>");
+            htmlBuilder.Append("<th data-options=\"field:'Name',width:150\">名称</th></tr></thead>");
+            htmlBuilder.Append("<thead>");
+            htmlBuilder.Append("<tr>");
             foreach (DataRow dr in table.Select("Type='分公司'", "OrganizationID, LevelCode"))
             {
                 string myLevelCode = dr["LevelCode"].ToString().Trim();

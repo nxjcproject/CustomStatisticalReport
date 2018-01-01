@@ -83,3 +83,16 @@ C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatis
 C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.dll
 C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Service.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Service.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Infrastructure.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Model.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Release\StatisticalReport.Infrastructure.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Release\Monitor_shell.Infrastructure.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Release\EnergyConsumption.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Infrastructure.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Model.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\bin\Release\RunIndicators.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.pdb

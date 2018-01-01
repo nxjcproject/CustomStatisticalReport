@@ -7,3 +7,8 @@ C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatis
 C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatisticalReport.Model\obj\Release\CustomStatisticalReport.Model.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatisticalReport.Model\obj\Release\CustomStatisticalReport.Model.dll
 C:\Users\Administrator\Desktop\宁夏建材\CustomStatisticalReport\CustomStatisticalReport.Model\obj\Release\CustomStatisticalReport.Model.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Model\bin\Release\CustomStatisticalReport.Model.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Model\bin\Release\CustomStatisticalReport.Model.pdb
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Model\obj\Release\CustomStatisticalReport.Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Model\obj\Release\CustomStatisticalReport.Model.dll
+C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Model\obj\Release\CustomStatisticalReport.Model.pdb
