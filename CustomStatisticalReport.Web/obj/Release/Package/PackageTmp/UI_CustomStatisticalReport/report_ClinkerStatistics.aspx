@@ -23,11 +23,10 @@
 
     <%--<div class="easyui-panel" data-options="fit:true" style="height:1000px">--%>
     <div id="toolbar_ReportTemplate">
-        <div>
-        <span>开始时间：<input id="startDate" type="text" class="easyui-datebox" required="required" style="width: 100px;" /></span>
-        <span>---</span>
-        <span>结束时间：<input id="endDate" type="text" class="easyui-datebox" required="required" style="width: 100px;" /></span>
-        <span><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"
+        <div style="padding-left:5px;">
+        <span>开始时间 &nbsp<input id="startDate" type="text" class="easyui-datebox" required="required" style="width: 100px;" /></span>
+        <span>&nbsp &nbsp 结束时间 &nbsp<input id="endDate" type="text" class="easyui-datebox" required="required" style="width: 100px;" /></span>
+        <span><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
             onclick="QueryReportFun();">查询</a></span>
     </div>
     <div>

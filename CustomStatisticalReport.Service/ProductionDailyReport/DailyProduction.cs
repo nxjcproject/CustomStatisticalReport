@@ -65,9 +65,13 @@ namespace CustomStatisticalReport.Service.ProductionDailyReport
                 string[] m_MonthArray = new string[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
                 DateTime m_DateTime = DateTime.Parse(myDateTime);
 
-                string m_Sql = @"Select B.EquipmentId, C.QuotasID, C.Type, B.{2} as Value from tz_Plan A, plan_ProductionYearlyPlan B, plan_ProductionPlan_Template C, system_Organization D, system_Organization E
+                string m_Sql = @"Select B.EquipmentId, C.QuotasID, C.Type, B.{2} as Value 
+                                from tz_Plan A, 
+                                     plan_ProductionYearlyPlan B, 
+                                     plan_ProductionPlan_Template C, 
+                                     system_Organization D
                                 where A.Date = '{1}'
-                                and A.OrganizationID = D.OrganizationID
+                                and A.OrganizationID like D.OrganizationID + '%'
                                 and A.PlanType = 'Production'
                                 and A.Statue = 1
                                 and A.KeyId = B.KeyId
@@ -75,8 +79,7 @@ namespace CustomStatisticalReport.Service.ProductionDailyReport
                                 and (C.QuotasID like '%产量%' or C.QuotasID like '%台时产量%' or C.QuotasID like '%运转率%' or C.QuotasID like '%运转时间%')
                                 and C.Type in ('MaterialWeight','EquipmentUtilization')
                                 and (C.OrganizationID = D.OrganizationID or C.OrganizationID is null)
-                                and D.OrganizationID = '{0}'
-                                and E.LevelCode like D.LevelCode + '%'";
+                                and D.OrganizationID = '{0}'";
                 m_Sql = string.Format(m_Sql, myOrganizationId, m_DateTime.Year.ToString(), m_MonthArray[m_DateTime.Month - 1]);
                 try
                 {
@@ -93,7 +96,7 @@ namespace CustomStatisticalReport.Service.ProductionDailyReport
                             for (int j = 0; j < m_DailyProductionPlanTable.Rows.Count; j++)
                             {
                                 string m_QuotasID = m_DailyProductionPlanTable.Rows[j]["QuotasID"] != DBNull.Value ? m_DailyProductionPlanTable.Rows[j]["QuotasID"].ToString() : "";
-                                if (m_QuotasID.Contains("产量") && myEquipmentCommonInfoTable.Rows[i]["EquipmentId"].ToString() == m_DailyProductionPlanTable.Rows[j]["EquipmentId"].ToString())
+                                if (m_QuotasID.Contains("产量") && !m_QuotasID.Contains("台时产量") && myEquipmentCommonInfoTable.Rows[i]["EquipmentId"].ToString() == m_DailyProductionPlanTable.Rows[j]["EquipmentId"].ToString())
                                 {
                                     myEquipmentCommonInfoTable.Rows[i]["Output_Plan"] = m_DailyProductionPlanTable.Rows[j]["Value"] != DBNull.Value ? m_DailyProductionPlanTable.Rows[j]["Value"] : 0;
                                 }

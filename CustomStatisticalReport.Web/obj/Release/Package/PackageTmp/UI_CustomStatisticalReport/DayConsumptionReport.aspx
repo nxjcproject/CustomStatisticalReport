@@ -34,13 +34,13 @@
                         <td>
                             <table>
                                 <tr>
-                                    <td>组织机构：</td>
+                                    <td style="width: 50px; text-align: right;">组织机构</td>
                                     <td>
                                         <input id="TextBox_OrganizationName" class="easyui-textbox" style="width: 100px;" readonly="readonly" /><input id="organizationId" readonly="readonly" style="display: none;" /></td>
-                                    <td>时间：</td>
+                                    <td style="width: 30px; text-align: right;">时间</td>
                                     <td>
-                                        <input id="datetime" type="text" class="easyui-datebox" style="width: 120px;" required="required" /></td>
-                                    <td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"
+                                        <input id="datetime" type="text" class="easyui-datebox" style="width: 100px;" required="required" /></td>
+                                    <td><a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-search'"
                                         onclick="QueryReportFun();">查询</a>
                                     </td>
                                 </tr>

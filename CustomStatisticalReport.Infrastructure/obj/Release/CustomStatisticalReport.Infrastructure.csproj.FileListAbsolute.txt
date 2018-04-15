@@ -47,3 +47,9 @@ C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-ma
 C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Infrastructure\obj\Release\CustomStatisticalReport.Infrastructure.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Infrastructure\obj\Release\CustomStatisticalReport.Infrastructure.dll
 C:\Users\Administrator\Desktop\NXJC统一调整列宽\CustomStatisticalReport-master\CustomStatisticalReport.Infrastructure\obj\Release\CustomStatisticalReport.Infrastructure.pdb
+C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatisticalReport.Infrastructure\bin\Release\CustomStatisticalReport.Infrastructure.dll
+C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatisticalReport.Infrastructure\bin\Release\CustomStatisticalReport.Infrastructure.pdb
+C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatisticalReport.Infrastructure\bin\Release\AutoMapper.dll
+C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatisticalReport.Infrastructure\obj\Release\CustomStatisticalReport.Infrastructure.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatisticalReport.Infrastructure\obj\Release\CustomStatisticalReport.Infrastructure.dll
+C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatisticalReport.Infrastructure\obj\Release\CustomStatisticalReport.Infrastructure.pdb
