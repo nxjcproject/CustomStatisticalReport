@@ -18,16 +18,16 @@
       <publishTime>08/17/2017 20:03:32</publishTime>
     </File>
     <File Include="bin/CustomStatisticalReport.Infrastructure.dll">
-      <publishTime>03/28/2018 09:42:11</publishTime>
+      <publishTime>07/06/2018 09:38:33</publishTime>
     </File>
     <File Include="bin/CustomStatisticalReport.Model.dll">
-      <publishTime>03/28/2018 09:43:58</publishTime>
+      <publishTime>07/06/2018 09:38:33</publishTime>
     </File>
     <File Include="bin/CustomStatisticalReport.Service.dll">
-      <publishTime>03/28/2018 16:28:42</publishTime>
+      <publishTime>07/06/2018 09:38:34</publishTime>
     </File>
     <File Include="bin/CustomStatisticalReport.Web.dll">
-      <publishTime>03/28/2018 16:41:56</publishTime>
+      <publishTime>07/06/2018 09:38:35</publishTime>
     </File>
     <File Include="bin/EasyUIJsonParser.dll">
       <publishTime>08/17/2017 20:03:32</publishTime>
@@ -4640,6 +4640,9 @@
     <File Include="UI_CustomStatisticalReport/js/page/report_ClinkerStatistics.js">
       <publishTime>08/17/2017 20:03:32</publishTime>
     </File>
+    <File Include="UI_CustomStatisticalReport/js/page/report_ComprehensiveConsumptionStatistics.js">
+      <publishTime>07/03/2018 20:45:35</publishTime>
+    </File>
     <File Include="UI_CustomStatisticalReport/js/page/report_PowerConsumptionComparison.js">
       <publishTime>08/17/2017 20:03:32</publishTime>
     </File>
@@ -4745,6 +4748,9 @@
     <File Include="UI_CustomStatisticalReport/report_ClinkerStatistics.aspx">
       <publishTime>12/27/2017 14:31:09</publishTime>
     </File>
+    <File Include="UI_CustomStatisticalReport/report_ComprehensiveConsumptionStatistics.aspx">
+      <publishTime>07/02/2018 15:37:40</publishTime>
+    </File>
     <File Include="UI_CustomStatisticalReport/report_PowerConsumptionComparison.aspx">
       <publishTime>12/27/2017 14:36:54</publishTime>
     </File>
@@ -4755,7 +4761,7 @@
       <publishTime>08/17/2017 20:03:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/28/2018 16:42:01</publishTime>
+      <publishTime>07/06/2018 09:38:40</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -84,6 +84,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportMonthly\ProductionReportDataService.cs" />
     <Compile Include="ReportMonthly\ReportMonthly_SemifinishedService.cs" />
+    <Compile Include="report_ComprehensiveConsumptionStatistics.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CustomStatisticalReport.Infrastructure\CustomStatisticalReport.Infrastructure.csproj">

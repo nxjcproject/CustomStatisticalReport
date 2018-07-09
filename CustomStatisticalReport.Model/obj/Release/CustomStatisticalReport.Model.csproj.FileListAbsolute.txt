@@ -17,3 +17,8 @@ C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatistica
 C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatisticalReport.Model\obj\Release\CustomStatisticalReport.Model.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatisticalReport.Model\obj\Release\CustomStatisticalReport.Model.dll
 C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatisticalReport.Model\obj\Release\CustomStatisticalReport.Model.pdb
+C:\Users\Administrator\Desktop\CustomStatisticalReport\CustomStatisticalReport.Model\bin\Release\CustomStatisticalReport.Model.dll
+C:\Users\Administrator\Desktop\CustomStatisticalReport\CustomStatisticalReport.Model\bin\Release\CustomStatisticalReport.Model.pdb
+C:\Users\Administrator\Desktop\CustomStatisticalReport\CustomStatisticalReport.Model\obj\Release\CustomStatisticalReport.Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\CustomStatisticalReport\CustomStatisticalReport.Model\obj\Release\CustomStatisticalReport.Model.dll
+C:\Users\Administrator\Desktop\CustomStatisticalReport\CustomStatisticalReport.Model\obj\Release\CustomStatisticalReport.Model.pdb

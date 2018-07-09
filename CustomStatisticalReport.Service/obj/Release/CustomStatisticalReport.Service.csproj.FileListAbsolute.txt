@@ -109,3 +109,5 @@ C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatistica
 C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.dll
 C:\Users\Administrator\Desktop\20180312\CustomStatisticalReport\CustomStatisticalReport.Service\obj\Release\CustomStatisticalReport.Service.pdb
+C:\Users\Administrator\Desktop\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Model.dll
+C:\Users\Administrator\Desktop\CustomStatisticalReport\CustomStatisticalReport.Service\bin\Release\CustomStatisticalReport.Model.pdb

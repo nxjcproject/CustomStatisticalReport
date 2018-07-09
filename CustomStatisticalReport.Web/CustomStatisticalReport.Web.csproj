@@ -1615,6 +1615,7 @@
     <Content Include="UI_CustomStatisticalReport\js\page\report_BalanceStatistics.js" />
     <Content Include="UI_CustomStatisticalReport\js\page\report_CementStatistics.js" />
     <Content Include="UI_CustomStatisticalReport\js\page\report_ClinkerStatistics.js" />
+    <Content Include="UI_CustomStatisticalReport\js\page\report_ComprehensiveConsumptionStatistics.js" />
     <Content Include="UI_CustomStatisticalReport\js\page\report_PowerConsumptionComparison.js" />
     <Content Include="UI_CustomStatisticalReport\js\page\report_QueryBalanceStatistics.js" />
     <Content Include="UI_CustomStatisticalReport\ProductionDailyReport\DailyProduction.aspx" />
@@ -1651,6 +1652,7 @@
     <Content Include="UI_CustomStatisticalReport\report_BalanceStatistics.aspx" />
     <Content Include="UI_CustomStatisticalReport\report_CementStatistics.aspx" />
     <Content Include="UI_CustomStatisticalReport\report_ClinkerStatistics.aspx" />
+    <Content Include="UI_CustomStatisticalReport\report_ComprehensiveConsumptionStatistics.aspx" />
     <Content Include="UI_CustomStatisticalReport\report_PowerConsumptionComparison.aspx" />
     <Content Include="UI_CustomStatisticalReport\report_QueryBalanceStatistics.aspx" />
     <Content Include="UI_CustomStatisticalReport\test.aspx" />
@@ -1768,6 +1770,13 @@
     </Compile>
     <Compile Include="UI_CustomStatisticalReport\report_ClinkerStatistics.aspx.designer.cs">
       <DependentUpon>report_ClinkerStatistics.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI_CustomStatisticalReport\report_ComprehensiveConsumptionStatistics.aspx.cs">
+      <DependentUpon>report_ComprehensiveConsumptionStatistics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI_CustomStatisticalReport\report_ComprehensiveConsumptionStatistics.aspx.designer.cs">
+      <DependentUpon>report_ComprehensiveConsumptionStatistics.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI_CustomStatisticalReport\report_PowerConsumptionComparison.aspx.cs">
       <DependentUpon>report_PowerConsumptionComparison.aspx</DependentUpon>

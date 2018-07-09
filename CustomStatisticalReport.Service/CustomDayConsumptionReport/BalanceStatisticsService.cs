@@ -137,7 +137,7 @@ namespace CustomStatisticalReport.Service.CustomDayConsumptionReport
 
 
             //计算综合电耗
-            string orgainizationLevelCode=GetOrganizationLevelCode(organizationID);
+            string orgainizationLevelCode = GetOrganizationLevelCode(organizationID);
             decimal calculateValue= AutoGetEnergyConsumption_V1.GetCementPowerConsumptionWithFormula("day",
                                            DateTime.Parse(startDate).ToString("yyyy-MM-dd"), DateTime.Parse(endDate).ToString("yyyy-MM-dd"), orgainizationLevelCode).CaculateValue;
             resultDataSet.Add(organizationID + ">" + "cementmill_ElectricityConsumption_Comprehensive", calculateValue.ToString());
