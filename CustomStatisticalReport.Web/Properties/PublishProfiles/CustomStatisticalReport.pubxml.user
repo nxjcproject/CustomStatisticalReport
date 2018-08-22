@@ -18,16 +18,16 @@
       <publishTime>08/17/2017 20:03:32</publishTime>
     </File>
     <File Include="bin/CustomStatisticalReport.Infrastructure.dll">
-      <publishTime>07/06/2018 09:38:33</publishTime>
+      <publishTime>08/19/2018 16:08:34</publishTime>
     </File>
     <File Include="bin/CustomStatisticalReport.Model.dll">
-      <publishTime>07/06/2018 09:38:33</publishTime>
+      <publishTime>08/19/2018 16:08:34</publishTime>
     </File>
     <File Include="bin/CustomStatisticalReport.Service.dll">
-      <publishTime>07/06/2018 09:38:34</publishTime>
+      <publishTime>08/21/2018 09:38:11</publishTime>
     </File>
     <File Include="bin/CustomStatisticalReport.Web.dll">
-      <publishTime>07/06/2018 09:38:35</publishTime>
+      <publishTime>08/21/2018 09:38:12</publishTime>
     </File>
     <File Include="bin/EasyUIJsonParser.dll">
       <publishTime>08/17/2017 20:03:32</publishTime>
@@ -4641,7 +4641,7 @@
       <publishTime>08/17/2017 20:03:32</publishTime>
     </File>
     <File Include="UI_CustomStatisticalReport/js/page/report_ComprehensiveConsumptionStatistics.js">
-      <publishTime>07/03/2018 20:45:35</publishTime>
+      <publishTime>08/20/2018 21:19:13</publishTime>
     </File>
     <File Include="UI_CustomStatisticalReport/js/page/report_PowerConsumptionComparison.js">
       <publishTime>08/17/2017 20:03:32</publishTime>
@@ -4749,7 +4749,7 @@
       <publishTime>12/27/2017 14:31:09</publishTime>
     </File>
     <File Include="UI_CustomStatisticalReport/report_ComprehensiveConsumptionStatistics.aspx">
-      <publishTime>07/02/2018 15:37:40</publishTime>
+      <publishTime>08/20/2018 21:17:07</publishTime>
     </File>
     <File Include="UI_CustomStatisticalReport/report_PowerConsumptionComparison.aspx">
       <publishTime>12/27/2017 14:36:54</publishTime>
@@ -4761,7 +4761,7 @@
       <publishTime>08/17/2017 20:03:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/06/2018 09:38:40</publishTime>
+      <publishTime>08/21/2018 09:41:39</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -24,22 +24,25 @@
         <div data-options="region:'center',border:true, collapsible:false, split:false">
             <table id="grid_ComprehensiveConsumption"></table>
         </div>
-        <div id="toolbar_ComprehensiveConsumption" style="display:none;">
+        <div id="toolbar_ComprehensiveConsumption" style="display: none;">
             <table>
                 <tr>
                     <td>
                         <table>
                             <tr>
-                                <td style="width:60px; text-align: right;">开始时间</td>
+                                <td style="width: 60px; text-align: right;">开始时间</td>
                                 <td>
-                                    <input id="startTime" type="text" class="easyui-datebox" style="width:100px" required="required"/>
+                                    <input id="startTime" type="text" class="easyui-datebox" style="width: 100px" required="required" />
                                 </td>
-                                <td style="width:60px; text-align: right;">结束时间</td>
+                                <td style="width: 60px; text-align: right;">结束时间</td>
                                 <td>
-                                    <input id="endTime" type="text" class="easyui-datebox" style="width:100px" required="required"/>
+                                    <input id="endTime" type="text" class="easyui-datebox" style="width: 100px" required="required" />
                                 </td>
-                                <td style="width:70px; text-align: right;">
+                                <td style="width: 70px; text-align: right;">
                                     <a id="mSelectBtn" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="Query()">查询</a>
+                                </td>
+                                <td style="width: 80px; text-align: right;">
+                                    <a href="#" class="easyui-linkbutton" data-options="iconCls:'ext-icon-page_white_excel',plain:true" onclick="ExportFileFun();">导出</a>
                                 </td>
                             </tr>
                         </table>
@@ -47,9 +50,7 @@
                 </tr>
             </table>
         </div>
-
     </div>
-
     <form id="form1" runat="server"></form>
 </body>
 </html>
