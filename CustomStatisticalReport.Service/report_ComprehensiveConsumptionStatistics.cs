@@ -42,10 +42,10 @@ namespace CustomStatisticalReport.Service
                 mOrgTable.Rows[i]["CemmentOutput"] = mCemmentOutput.ToString("0.0");
                 mOrgTable.Rows[i]["CemmentOfClinkerInput"] = mCemmentOfClinkerInput.ToString("0.0");
                 mOrgTable.Rows[i]["CemmentOfClinkerOutsourcingInput"] = mCemmentOfClinkerOutsourcingInput.ToString("0.0");
-
-                mOrgTable.Rows[i]["cementConsumption"] = mCementConsumption;
+                
                 mOrgTable.Rows[i]["clinkerComprehensiveConsumption"] = mClinkerConsumption;
                 mOrgTable.Rows[i]["cementComprehensiveConsumption"] = mCementComprehensiveConsumption;
+                mOrgTable.Rows[i]["cementConsumption"] = mCementConsumption;
             }
             return mOrgTable;
         }
@@ -60,9 +60,9 @@ namespace CustomStatisticalReport.Service
                                   ,'' as CemmentOutput
                                   ,'' as CemmentOfClinkerInput
                                   ,'' as CemmentOfClinkerOutsourcingInput
-                                  ,'' as cementConsumption
                                   ,'' as clinkerComprehensiveConsumption
-                                  ,'' as cementComprehensiveConsumption                               
+                                  ,'' as cementComprehensiveConsumption
+                                  ,'' as cementConsumption                                                                                                  
                               FROM system_Organization A,
                                    system_Organization B
                               where A.ENABLED = 1
@@ -90,25 +90,25 @@ namespace CustomStatisticalReport.Service
         /// <returns></returns>
         private static DataTable GetBalanceEnergyDataTable(string mStartTime, string mEndTime)
         {
-            string mSql = @"SELECT  A.OrganizationID as FactoryOrganizationID
-                                    ,B.VariableId
-                                    ,B.VariableName
-                                    ,B.OrganizationID
-                                    ,SUM(B.TotalPeakValleyFlatB) AS TotalPeakValleyFlatB
-                                  FROM tz_Balance A,
-                                       balance_Energy B
-                                 where A.StaticsCycle = 'day'
-                                   and A.BalanceId = B.KeyId
-                                   and A.TimeStamp >= @mStartTime
-                                   and A.TimeStamp <= @mEndTime
-                                   and B.VariableId in ('totalElectricityConsumptionOfClinker_ElectricityQuantity',
-                                                        'totalElectricityConsumptionOfCement_ElectricityQuantity',
-		                                                'clinker_ClinkerOutput',
-                                                        'cement_CementOutput',
-                                                        'clinker_ClinkerInput', 
-                                                        'clinker_ClinkerOutsourcingInput')
-                                   group by A.OrganizationID,B.OrganizationID,B.VariableId,B.VariableName
-                                   order by B.OrganizationID";
+            string mSql = @"SELECT A.OrganizationID as FactoryOrganizationID
+                                   ,B.VariableId
+                                   ,B.VariableName
+                                   ,B.OrganizationID
+                                   ,SUM(B.TotalPeakValleyFlatB) AS TotalPeakValleyFlatB
+                                 FROM tz_Balance A,
+                                      balance_Energy B
+                                where A.StaticsCycle = 'day'
+                                  and A.BalanceId = B.KeyId
+                                  and A.TimeStamp >= @mStartTime
+                                  and A.TimeStamp <= @mEndTime
+                                  and B.VariableId in ('totalElectricityConsumptionOfClinker_ElectricityQuantity',
+                                                       'totalElectricityConsumptionOfCement_ElectricityQuantity',
+		                                               'clinker_ClinkerOutput',
+                                                       'cement_CementOutput',
+                                                       'clinker_ClinkerInput', 
+                                                       'clinker_ClinkerOutsourcingInput')
+                                  group by A.OrganizationID,B.OrganizationID,B.VariableId,B.VariableName
+                                  order by B.OrganizationID";
             SqlParameter[] paras = { new SqlParameter("@mStartTime",mStartTime),
                                      new SqlParameter("@mEndTime",mEndTime)};
             try
@@ -193,7 +193,7 @@ namespace CustomStatisticalReport.Service
                     mCemmentOfClinkerOutsourcingInput = 0M;
                 }
 
-                if (mClikerOutput != 0)
+                if (mClikerOutput >= 10)//默认熟料产量小于10，电耗即为0
                 {
                     mClinkerConsumption = (mTotalElectricityConsumptionOfClinker / mClikerOutput).ToString("0.00");//熟料综合电耗
                 }
@@ -202,11 +202,18 @@ namespace CustomStatisticalReport.Service
                     mClinkerConsumption = "0.00";
                 }
 
-                if (mCemmentOutput != 0)
+                if (mCemmentOutput >= 10)//默认水泥磨产量小于10，电耗即为0
                 {
                     mCementConsumption = (mTotalElectricityConsumptionOfCement / mCemmentOutput).ToString("0.00");//水泥单耗电耗
-                    mCementComprehensiveConsumption = (((mCemmentOfClinkerOutsourcingInput * mClinkerOutsourcingInputConsumption) + decimal.Parse(mClinkerConsumption) * mCemmentOfClinkerInput + mTotalElectricityConsumptionOfCement) /
-                        mCemmentOutput).ToString("0.00");//水泥综合电耗
+                    if (mFactoryOrganizationID == "zc_nxjc_szsc_szsf")//石嘴山分厂的外购熟料也当成是自产熟料计算，与宁东相同
+                    {
+                        mCementComprehensiveConsumption = mCementConsumption;
+                    }
+                    else
+                    {
+                        mCementComprehensiveConsumption = (((mCemmentOfClinkerOutsourcingInput * mClinkerOutsourcingInputConsumption) + decimal.Parse(mClinkerConsumption) * mCemmentOfClinkerInput + mTotalElectricityConsumptionOfCement) /
+                           mCemmentOutput).ToString("0.00");//水泥综合电耗
+                    }               
                 }
                 else
                 {

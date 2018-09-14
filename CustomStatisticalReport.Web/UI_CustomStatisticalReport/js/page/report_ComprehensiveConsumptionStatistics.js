@@ -11,7 +11,7 @@ function InitDate() {
     var nowDate = new Date();
     var beforeDate = new Date();
     nowDate.setDate(nowDate.getDate() - 1);
-    beforeDate.setDate(nowDate.getDate() - 10);
+    beforeDate.setMonth(beforeDate.getMonth() - 1);
     var nowString = nowDate.getFullYear() + '-' + (nowDate.getMonth() + 1) + '-' + nowDate.getDate();
     var beforeString = beforeDate.getFullYear() + '-' + (beforeDate.getMonth() + 1) + '-' + beforeDate.getDate();
     $('#startTime').datebox('setValue', beforeString);
@@ -68,7 +68,7 @@ function Query() {
             if (myData != undefined && myData.length == 0) {
                 loadDataGrid("last", []);
                 $.messager.alert('提示', '没有查询到记录！');
-            } else {               
+            } else {
                 $('#grid_ComprehensiveConsumption').datagrid("loadData", myData);
             }
         },

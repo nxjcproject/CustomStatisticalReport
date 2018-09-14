@@ -21,7 +21,6 @@ namespace CustomStatisticalReport.Service
 
         public static Standard_GB16780_2012.Model_CaculateValue GetComprehensiveData(string myOrganizationId, string myVariableId, string mStartDate, string mEndDate)
         {
-            DateTime m_Datetime = DateTime.Now;
             DataTable m_OrganizationLevelCodeTable = GetOrganizationInfo(myOrganizationId);
             if (m_OrganizationLevelCodeTable != null && m_OrganizationLevelCodeTable.Rows.Count > 0)
             {

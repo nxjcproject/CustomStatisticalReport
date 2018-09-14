@@ -11,7 +11,7 @@ function InitDate() {
     var beforeDate = new Date();
     beforeDate.setDate(nowDate.getDate() - 5);
     var nowString = nowDate.getFullYear() + '-' + (nowDate.getMonth() + 1) + '-' + nowDate.getDate();
-    var beforeString = beforeDate.getFullYear() + '-' + (beforeDate.getMonth() + 1) + '-' + beforeDate.getDate() ;
+    var beforeString = beforeDate.getFullYear() + '-' + (beforeDate.getMonth() + 1) + '-' + beforeDate.getDate();
     $('#startDate').datebox('setValue', beforeString);
     $('#endDate').datebox('setValue', nowString);
 }
@@ -22,7 +22,7 @@ function onOrganisationTreeClick(node) {
 function QueryReportFun() {
     var m_OrganizationId = $('#organizationId').val();
     SelectOrganizationName = $('#TextBox_OrganizationName').textbox('getText');
-    var mStartDate= $("#startDate").datebox("getValue");;
+    var mStartDate = $("#startDate").datebox("getValue");;
     var mEndDate = $("#endDate").datebox("getValue");;
     SelectDatetime = mStartDate + ' 至 ' + mEndDate;
     var win = $.messager.progress({
@@ -40,18 +40,19 @@ function QueryReportFun() {
                 $.messager.progress('close');
                 var m_MsgData = jQuery.parseJSON(msg.d);
                 if (m_MsgData.total == 0) {
-                    $('#datagrid_ReportTable').datagrid("loadData", []);
-                } else {
-                    $('#datagrid_ReportTable').datagrid("loadData", m_MsgData);
-                    myMergeCell("datagrid_ReportTable", "ProcessName");
+                    $('#datagrid_ReportTable').treegrid("loadData", []);
+                }
+                else {
+                    $('#datagrid_ReportTable').treegrid("loadData", m_MsgData);
+                    myMergeCell("datagrid_ReportTable", "ComprehensiveCementConsumption");
                 }
             },
-            beforeSend: function(XMLHttpRequest){
+            beforeSend: function (XMLHttpRequest) {
                 win;
             },
             error: function () {
                 $.messager.progress('close');
-                $("#datagrid_ReportTable").datagrid('loadData', []);
+                $("#datagrid_ReportTable").treegrid('loadData', []);
                 $.messager.alert('失败', '获取数据失败');
             }
         });
@@ -62,40 +63,32 @@ function QueryReportFun() {
 
 }
 function Loaddatagrid(myData) {
-    try {
-        $('#datagrid_ReportTable').datagrid({
-            data: myData,
-            dataType: "json",
-            //loadMsg: '',   //设置本身的提示消息为空 则就不会提示了的。这个设置很关键的
-            idField: 'id',
-            treeField: 'Name',
-            rownumbers: true,
-            singleSelect: true,
-            frozenColumns: [[
-                 { width: '80', title: '产线', field: 'ProcessName' },
-                { width: '80', title: '工序名称', field: 'Type' }, ]],
-            columns: [[
-               // { width: '100', title: '变量ID', field: 'VariableId', hidden: true },
-                { width: '100', title: '组织机构层次码', field: 'OrganizationId', hidden: true },
-              //  { width: '100', title: '层次码', field: 'LevelCode', hidden: true },                      
-                { width: '80', title: '电量', field: 'ElectricityQuantity' },
-                { width: '80', title: '产量', field: 'MaterialWeight'},
-                { width: '80', title: '电耗', field: 'PowerConsumption' },
-                { width: '80', title: '计算电耗', field: 'CalculationPowerConsumption' },
-                { width: '80', title: '综合电耗', field: 'ComprehensivePowerConsumption' },
-                { width: '80', title: '', field: 'ElectricityQuantityVariable', hidden: true },//为了导出时不显示
-                { width: '80', title: '', field: 'MaterialWeightVariable', hidden: true },//为了导出时不显示
-                { width: '80', title: '', field: 'ComprehensivePowerConsumptionVariable', hidden: true },//为了导出时不显示
-            ]],
-            toolbar: '#toolbar_ReportTable'
-        });
-    }
-    catch (e) {
-    }
+    $('#datagrid_ReportTable').treegrid({
+        data: myData,
+        dataType: "json",
+        idField: 'id', 
+        treeField: 'ProductionLineName',
+        rownumbers: true,
+        singleSelect: true,
+        columns: [[
+            { width: '130', title: '产线', field: 'ProductionLineName', align: 'left' },
+            { width: '80', title: '产线类型', field: 'OrganizationType', align: 'right', hidden: true },
+            { width: '80', title: '组织机构层次码', field: 'LevelCode', align: 'right', hidden: true },
+            { width: '90', title: '电量', field: 'ElectricityQuantity', align: 'right' },
+            { width: '90', title: '产量', field: 'MaterialWeight', align: 'right' },
+            { width: '60', title: '电耗', field: 'PowerConsumption', align: 'right' },
+            { width: '60', title: '计算电耗', field: 'CalculationPowerConsumption', align: 'right' },
+            { width: '60', title: '综合电耗', field: 'ComprehensivePowerConsumption', align: 'right' },
+            { width: '80', title: '水泥综合电耗', field: 'ComprehensiveCementConsumption', align: 'right' },
+        ]],
+        toolbar: '#toolbar_ReportTable'
+    });
 }
+
 function RefreshFun() {
     QueryReportFun();
 }
+
 function ExportFileFun() {
     var m_FunctionName = "ExcelStream";
     var m_Parameter1 = GetDataGridTableHtml("datagrid_ReportTable", "能耗日报", SelectDatetime);
@@ -133,17 +126,16 @@ function ExportFileFun() {
     //释放生成的资源
     form.remove();
 }
+
 function PrintFileFun() {
     var m_ReportTableHtml = GetDataGridTableHtml("datagrid_ReportTable", "能耗日报", SelectDatetime);
     PrintHtml(m_ReportTableHtml);
 }
 
-
-
 //合并单元格
 function myMergeCell(myDatagridId, columnName) {
     merges = getMergeCellArray(myDatagridId, columnName);
-    var columnNameList = new Array("ProcessName", "CalculationPowerConsumption", "ComprehensivePowerConsumption");
+    var columnNameList = new Array("ComprehensiveCementConsumption");
     doMergeCell(myDatagridId, columnNameList, merges);
 }
 //获取需要合并单元格的数组信息
@@ -196,6 +188,6 @@ function doMergeCell(myDatagridId, columnNameArray, merges) {
                 field: columnNameArray[j],
                 rowspan: merges[i].rowspan
             });
-        }    
+        }
     }
 }

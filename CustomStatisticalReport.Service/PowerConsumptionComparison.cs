@@ -12,138 +12,306 @@ namespace CustomStatisticalReport.Service
 {
     public class PowerConsumptionComparison
     {
+        private static string _connString = ConnectionStringFactory.NXJCConnectionString;
+        private static ISqlServerDataFactory _dataFactory = new SqlServerDataFactory(_connString);
+        private static readonly AutoSetParameters.AutoGetEnergyConsumptionRuntime_V1 AutoGetEnergyConsumption_V1 = new AutoSetParameters.AutoGetEnergyConsumptionRuntime_V1(_dataFactory);
 
-        public static DataTable GetReportData(string organizationId, string mStartDate, string mEndDate) 
+        private const decimal mClinkerOutsourcingInputConsumption = 65M;//外购熟料电耗65
+        private static decimal mTotalElectricityConsumptionOfClinker = 0;//某厂熟料总共耗电量
+        private static decimal mTotalElectricityConsumptionOfCement = 0;//某厂水泥总共耗电量
+        private static decimal mCemmentOutput = 0;//某厂水泥产量
+        private static decimal mClikerOutput = 0;//某厂熟料产量
+        private static decimal mCemmentOfClinkerInput = 0;//某厂水泥磨自产熟料消耗量
+        private static decimal mCemmentOfClinkerOutsourcingInput = 0;//某厂水泥磨外购熟料消耗量
+        private static string mCementConsumption = null;//水泥单耗电耗
+        private static string mClinkerConsumption = null;//熟料综合电耗
+        private static string mCementComprehensiveConsumption = null;//水泥综合电耗
+
+        public static DataTable GetReportData(string organizationId, string mStartDate, string mEndDate)
         {
-            //private static ISqlServerDataFactory _dataFactory = new SqlServerDataFactory(ConnectionStringFactory.NXJCConnectionString);
-            DataTable mStructTable = GetStructTablebyOrganizationId(organizationId);
-            string ConnectionString = ConnectionStringFactory.NXJCConnectionString;
-            ISqlServerDataFactory dataFactory = new SqlServerDataFactory(ConnectionString);
+            string mOrganizationLevelCode = null;//为计算综合电耗，获取分厂的LevelCode
 
-            string mySql = @"select  B.[VariableId]
-		                        ,B.[VariableName]
-		                        ,B.[OrganizationID]
-		                        ,B.[ValueType]
-		                        ,sum(B.[TotalPeakValleyFlat]) as sumValue from [NXJC].[dbo].[tz_Balance] A,[NXJC].[dbo].[balance_Energy] B
-                                where A.OrganizationID like @organizationId+'%'
-                                and A.[BalanceId]=B.[KeyId]
-                                and [StaticsCycle]='day'
-                                and A.[TimeStamp]>=@mStartDate and A.[TimeStamp]<=@mEndDate
-                                and (B.[ValueType]='ElectricityQuantity' or B.[ValueType]='MaterialWeight')
-                                and( B.OrganizationID like '%clinker%' or B.OrganizationID like '%cementmill%')
-                                and(B.VariableId='rawMaterialsPreparation_ElectricityQuantity' or B.VariableId='clinker_MixtureMaterialsOutput'
-                                or B.VariableId='clinkerPreparation_ElectricityQuantity' or B.VariableId='clinker_ClinkerOutput'
-                                or B.VariableId='cementPreparation_ElectricityQuantity' or B.VariableId='cement_CementOutput'
-                                or B.VariableId='coalPreparation_ElectricityQuantity' or B.VariableId='clinker_PulverizedCoalOutput'
-                                )
-                                group by
-                                       B.[VariableId]
-                                      ,B.[VariableName]
-                                      ,B.[OrganizationID]
-                                      ,B.[ValueType]
-                                order by B.[ValueType],B.OrganizationID desc";
-            SqlParameter[] myPara = {   new SqlParameter("@organizationId", organizationId),
-                                        new SqlParameter("@mStartDate", mStartDate),
-                                        new SqlParameter("@mEndDate", mEndDate) };
-            DataTable originalTable = dataFactory.Query(mySql, myPara);
-          
-            for (int i = 0; i < mStructTable.Rows.Count;i++ )
+            DataTable mResultTable = GetResultTable(organizationId, out mOrganizationLevelCode);
+            DataTable mBalanceEnergyTable = GetBalanceEnergyDataTable(organizationId, mStartDate, mEndDate);
+
+            decimal mRawMaterialsPreparationOutput = 0M;//生料产量
+            decimal mRawMaterialsPreparationElectricityQuantity = 0M;//生料制备电量
+            decimal mClinkerPreparationElectricityQuantity = 0M;//熟料制备电量
+            decimal mCementPreparationElectricityQuantity = 0M;//水泥制备电量
+
+            if (mBalanceEnergyTable.Select("VariableId='clinker_MixtureMaterialsOutput'").Length != 0)
             {
-              //  mStructTable.Rows[i]["OrganizationId"]; mStructTable.Rows[i]["ElectricityQuantityVariable"]; mStructTable.Rows[i]["MaterialWeightVariable"]
-                decimal ElectricityQuantityValue = 0;
-                decimal MaterialWeightValue = 0;
-                for(int j=0;j<originalTable.Rows.Count;j++)
-                {
-                    if (mStructTable.Rows[i]["OrganizationId"].ToString().Trim() == originalTable.Rows[j]["OrganizationID"].ToString().Trim())
-                    {
-                      
-                        if (mStructTable.Rows[i]["ElectricityQuantityVariable"].ToString().Trim() == originalTable.Rows[j]["VariableId"].ToString().Trim())
-                        {
-                            mStructTable.Rows[i]["ElectricityQuantity"] = originalTable.Rows[j]["sumValue"];
-                            ElectricityQuantityValue = Convert.ToDecimal(originalTable.Rows[j]["sumValue"]);
-                        }
-                        else if (mStructTable.Rows[i]["MaterialWeightVariable"].ToString().Trim() == originalTable.Rows[j]["VariableId"].ToString().Trim())
-                        {
-                            mStructTable.Rows[i]["MaterialWeight"] = originalTable.Rows[j]["sumValue"];
-                            MaterialWeightValue = Convert.ToDecimal(originalTable.Rows[j]["sumValue"]);
-                        }                   
-                    }
-                }          
-                mStructTable.Rows[i]["PowerConsumption"] =
-                    MaterialWeightValue == 0 ? 0 : (mStructTable.Rows[i]["PowerConsumption"] = Convert.ToDouble(ElectricityQuantityValue / MaterialWeightValue).ToString("0.00"));
-                if (mStructTable.Rows[i]["OrganizationId"].ToString().Trim().Contains("cementmill"))
-                {
-                    mStructTable.Rows[i]["CalculationPowerConsumption"] = mStructTable.Rows[i]["PowerConsumption"];
-                    string mOrganizationId=mStructTable.Rows[i]["OrganizationId"].ToString().Trim();
-                    string mVariable=mStructTable.Rows[i]["ComprehensivePowerConsumptionVariable"].ToString().Trim();
-                    string Value = ComprehensiveConsumptionService.GetComprehensiveData(mOrganizationId, mVariable, mStartDate, mEndDate).CaculateValue.ToString("0.00").Trim();
-
-                    mStructTable.Rows[i]["ComprehensivePowerConsumption"] = Value;
-                }                         
+                mRawMaterialsPreparationOutput = (decimal)mBalanceEnergyTable.Compute("sum(TotalPeakValleyFlatB)", "VariableId='clinker_MixtureMaterialsOutput'");
             }
-            for (int i = 2; i < mStructTable.Rows.Count; i++)
+            if (mBalanceEnergyTable.Select("VariableId='rawMaterialsPreparation_ElectricityQuantity'").Length != 0)
             {
-              
-                if ((mStructTable.Rows[i]["OrganizationID"] == mStructTable.Rows[i - 1]["OrganizationID"])&& (mStructTable.Rows[i]["OrganizationID"]== mStructTable.Rows[i-2]["OrganizationID"]) && mStructTable.Rows[i]["OrganizationID"].ToString().Trim().Contains("clinker"))
+                mRawMaterialsPreparationElectricityQuantity = (decimal)mBalanceEnergyTable.Compute("sum(TotalPeakValleyFlatB)", "VariableId='rawMaterialsPreparation_ElectricityQuantity'");
+            }
+            if (mBalanceEnergyTable.Select("VariableId='clinkerPreparation_ElectricityQuantity'").Length != 0)
+            {
+                mClinkerPreparationElectricityQuantity = (decimal)mBalanceEnergyTable.Compute("sum(TotalPeakValleyFlatB)", "VariableId='clinkerPreparation_ElectricityQuantity'");
+            }
+            if (mBalanceEnergyTable.Select("VariableId='cementPreparation_ElectricityQuantity'").Length != 0)
+            {
+                mCementPreparationElectricityQuantity = (decimal)mBalanceEnergyTable.Compute("sum(TotalPeakValleyFlatB)", "VariableId='cementPreparation_ElectricityQuantity'");
+            }
+
+            GetCementComprehensiveConsumption(organizationId, mBalanceEnergyTable);//计算水泥综合电耗
+
+            for (int i = 0; i < mResultTable.Rows.Count; i++)
+            {
+                if (mResultTable.Rows[i]["OrganizationType"].ToString().Trim() == "Factory")
                 {
-                    //熟料计算电耗
-                    decimal clinkerProcessElectricityQuantity = Convert.ToDecimal(mStructTable.Rows[i]["ElectricityQuantity"]) + Convert.ToDecimal(mStructTable.Rows[i-1]["ElectricityQuantity"]) +
-                        Convert.ToDecimal(mStructTable.Rows[i -2]["ElectricityQuantity"]);
-                    decimal ClinkerOutput = Convert.ToDecimal(mStructTable.Rows[i]["MaterialWeight"]);
-                    mStructTable.Rows[i]["CalculationPowerConsumption"] = ClinkerOutput == 0 ? 0 : (mStructTable.Rows[i]["CalculationPowerConsumption"] = Convert.ToDouble(clinkerProcessElectricityQuantity / ClinkerOutput).ToString("0.00"));
-                    mStructTable.Rows[i - 1]["CalculationPowerConsumption"] = mStructTable.Rows[i]["CalculationPowerConsumption"];
-                    mStructTable.Rows[i - 2]["CalculationPowerConsumption"] = mStructTable.Rows[i]["CalculationPowerConsumption"];
-
-                    //熟料综合电耗
-                    string mOrganizationId = mStructTable.Rows[i]["OrganizationId"].ToString().Trim();
-                    string mVariable = mStructTable.Rows[i]["ComprehensivePowerConsumptionVariable"].ToString().Trim();
-                    string Value = ComprehensiveConsumptionService.GetComprehensiveData(mOrganizationId, mVariable, mStartDate, mEndDate).CaculateValue.ToString("0.00").Trim();
-
-                    mStructTable.Rows[i]["ComprehensivePowerConsumption"] = Value;
-                    mStructTable.Rows[i-1]["ComprehensivePowerConsumption"] = Value;
-                    mStructTable.Rows[i-2]["ComprehensivePowerConsumption"] = Value;
+                    mResultTable.Rows[i]["ElectricityQuantity"] = (mRawMaterialsPreparationElectricityQuantity + mClinkerPreparationElectricityQuantity + mCementPreparationElectricityQuantity).ToString("0.0");
+                    mResultTable.Rows[i]["MaterialWeight"] = mCemmentOutput.ToString("0.0");
+                    mResultTable.Rows[i]["PowerConsumption"] = mCemmentOutput >= 10 ? ((mRawMaterialsPreparationElectricityQuantity + mClinkerPreparationElectricityQuantity + mCementPreparationElectricityQuantity) / mCemmentOutput).ToString("0.0") : "0.0";
+                    mResultTable.Rows[i]["CalculationPowerConsumption"] = mCemmentOutput >= 10 ? ((mRawMaterialsPreparationElectricityQuantity + mClinkerPreparationElectricityQuantity + mCementPreparationElectricityQuantity) / mCemmentOutput).ToString("0.0") : "0.0";
+                    mResultTable.Rows[i]["ComprehensivePowerConsumption"] = "";
+                    mResultTable.Rows[i]["ComprehensiveCementConsumption"] = mCementComprehensiveConsumption;
+                    mResultTable.Rows[i]["state"] = "open";
+                }
+                if (mResultTable.Rows[i]["OrganizationType"].ToString().Trim() == "clinker")
+                {
+                    mResultTable.Rows[i]["ElectricityQuantity"] = (mRawMaterialsPreparationElectricityQuantity + mClinkerPreparationElectricityQuantity).ToString("0.0");
+                    mResultTable.Rows[i]["MaterialWeight"] = mClikerOutput.ToString("0.0");
+                    mResultTable.Rows[i]["PowerConsumption"] = mClikerOutput >= 10 ? ((mRawMaterialsPreparationElectricityQuantity + mClinkerPreparationElectricityQuantity) / mClikerOutput).ToString("0.0") : "0.0";
+                    mResultTable.Rows[i]["CalculationPowerConsumption"] = mClikerOutput >= 10 ? ((mRawMaterialsPreparationElectricityQuantity + mClinkerPreparationElectricityQuantity) / mClikerOutput).ToString("0.0") : "0.0";
+                    mResultTable.Rows[i]["ComprehensivePowerConsumption"] = AutoGetEnergyConsumption_V1.GetClinkerPowerConsumptionWithFormula("day", mStartDate.ToString(), mEndDate.ToString(), mOrganizationLevelCode).CaculateValue.ToString("0.0");
+                    mResultTable.Rows[i]["ComprehensiveCementConsumption"] = "";
+                    mResultTable.Rows[i]["state"] = "open";
+                }
+                if (mResultTable.Rows[i]["OrganizationType"].ToString().Trim() == "rawMaterialsPreparation")
+                {
+                    mResultTable.Rows[i]["ElectricityQuantity"] = mRawMaterialsPreparationElectricityQuantity.ToString("0.0");
+                    mResultTable.Rows[i]["MaterialWeight"] = mRawMaterialsPreparationOutput.ToString("0.0");
+                    mResultTable.Rows[i]["PowerConsumption"] = mRawMaterialsPreparationOutput >= 1 ? (mRawMaterialsPreparationElectricityQuantity / mRawMaterialsPreparationOutput).ToString("0.0") : "0.0";
+                    mResultTable.Rows[i]["CalculationPowerConsumption"] = mRawMaterialsPreparationOutput >= 1 ? (mRawMaterialsPreparationElectricityQuantity / mRawMaterialsPreparationOutput).ToString("0.0") : "0.0";
+                    mResultTable.Rows[i]["ComprehensivePowerConsumption"] = "";//AutoGetEnergyConsumption_V1.GetClinkerPowerConsumptionWithFormula("day", mStartDate.ToString(), mEndDate.ToString(), mOrganizationLevelCode).CaculateValue.ToString("0.0");
+                    mResultTable.Rows[i]["ComprehensiveCementConsumption"] = "";
+                    mResultTable.Rows[i]["state"] = "open";
+                }
+                if (mResultTable.Rows[i]["OrganizationType"].ToString().Trim() == "clinkerPreparation")
+                {
+                    mResultTable.Rows[i]["ElectricityQuantity"] = mClinkerPreparationElectricityQuantity.ToString("0.0");
+                    mResultTable.Rows[i]["MaterialWeight"] = mClikerOutput.ToString("0.0");
+                    mResultTable.Rows[i]["PowerConsumption"] = mClikerOutput >= 10 ? (mClinkerPreparationElectricityQuantity / mClikerOutput).ToString("0.0") : "0.0";
+                    mResultTable.Rows[i]["CalculationPowerConsumption"] = mClikerOutput >= 10 ? (mClinkerPreparationElectricityQuantity / mClikerOutput).ToString("0.0") : "0.0";
+                    mResultTable.Rows[i]["ComprehensivePowerConsumption"] = "";//AutoGetEnergyConsumption_V1.GetClinkerPowerConsumptionWithFormula("day", mStartDate.ToString(), mEndDate.ToString(), mOrganizationLevelCode).CaculateValue.ToString("0.0");
+                    mResultTable.Rows[i]["ComprehensiveCementConsumption"] = "";
+                    mResultTable.Rows[i]["state"] = "open";
+                }
+                if (mResultTable.Rows[i]["OrganizationType"].ToString().Trim() == "cementilment")
+                {
+                    mResultTable.Rows[i]["ElectricityQuantity"] = mCementPreparationElectricityQuantity.ToString("0.0");
+                    mResultTable.Rows[i]["MaterialWeight"] = mCemmentOutput.ToString("0.0");
+                    mResultTable.Rows[i]["PowerConsumption"] = mCemmentOutput >= 10 ? (mCementPreparationElectricityQuantity / mCemmentOutput).ToString("0.0") : "0.0";
+                    mResultTable.Rows[i]["CalculationPowerConsumption"] = mCemmentOutput >= 10 ? (mCementPreparationElectricityQuantity / mCemmentOutput).ToString("0.0") : "0.0";
+                    mResultTable.Rows[i]["ComprehensivePowerConsumption"] = AutoGetEnergyConsumption_V1.GetCementPowerConsumptionWithFormula("day", mStartDate.ToString(), mEndDate.ToString(), mOrganizationLevelCode).CaculateValue.ToString("0.0");
+                    mResultTable.Rows[i]["ComprehensiveCementConsumption"] = "";
+                    mResultTable.Rows[i]["state"] = "open";
                 }
             }
-
-            return mStructTable;
+            return mResultTable;
         }
-        private static DataTable GetStructTablebyOrganizationId(string organizationId) 
+
+        private static DataTable GetResultTable(string organizationId, out string mOrganizationLevelCode)
         {
-            string ConnectionString = ConnectionStringFactory.NXJCConnectionString;
-            ISqlServerDataFactory dataFactory = new SqlServerDataFactory(ConnectionString);
-            string mySql = @"  select OrganizationID,Name from [NXJC].[dbo].[tz_Material]  where OrganizationID like @organizationId+'%' 
-	                          and Enable=1 and State=0
-	                          order by OrganizationID,Name";
-            DataTable originalTable = dataFactory.Query(mySql, new SqlParameter("@organizationId", organizationId));
-            DataTable table = GetTableStructrue();
-            for(int i=0;i<originalTable.Rows.Count;i++)
+            string mSql = @"SELECT A.Type
+                              FROM system_Organization A,
+                                   system_Organization B
+                              WHERE B.OrganizationID = @OrganizationID
+                                AND A.LevelCode LIKE B.LevelCode + '%'
+	                            AND (A.Type = '熟料' OR A.Type = '水泥磨' OR A.Type = '分厂')
+                              GROUP BY A.Type
+                              ORDER BY A.Type";
+
+            string mySql = @"SELECT LevelCode, Name
+                                    FROM system_Organization
+                                    WHERE OrganizationID = @OrganizationID";
+
+            SqlParameter mpara = new SqlParameter("@OrganizationID", organizationId);
+            SqlParameter mypara = new SqlParameter("@OrganizationID", organizationId);
+
+            DataTable mProductionLineTable = _dataFactory.Query(mSql, mpara);
+            DataTable mOrganizationTable = _dataFactory.Query(mySql, mypara);
+            mOrganizationLevelCode = mOrganizationTable.Rows[0]["LevelCode"].ToString().Trim();
+
+            DataTable mResultTable = GetResultTableStructrue();
+            for (int i = 0; i < mProductionLineTable.Rows.Count; i++)
             {
-                if (originalTable.Rows[i]["OrganizationID"].ToString().Trim().Contains("clinker")) {
-                    table.Rows.Add(originalTable.Rows[i]["OrganizationID"], originalTable.Rows[i]["Name"], "生料制备", "rawMaterialsPreparation_ElectricityQuantity", null, "clinker_MixtureMaterialsOutput");
-                    table.Rows.Add(originalTable.Rows[i]["OrganizationID"], originalTable.Rows[i]["Name"], "煤粉制备", "coalPreparation_ElectricityQuantity", null, "clinker_PulverizedCoalOutput");
-                    table.Rows.Add(originalTable.Rows[i]["OrganizationID"], originalTable.Rows[i]["Name"], "熟料制备", "clinkerPreparation_ElectricityQuantity", null, "clinker_ClinkerOutput", null, null, null, "clinker_ElectricityConsumption_Comprehensive");            
+                if (mProductionLineTable.Rows[i]["Type"].ToString().Trim() == "分厂")
+                {
+                    mResultTable.Rows.Add(mOrganizationTable.Rows[0]["Name"].ToString(), "Factory", "R01");
                 }
-                else if (originalTable.Rows[i]["OrganizationID"].ToString().Trim().Contains("cementmill")) {
-                    table.Rows.Add(originalTable.Rows[i]["OrganizationID"], originalTable.Rows[i]["Name"], "水泥制备", "cementPreparation_ElectricityQuantity", null, "cement_CementOutput", null, null, null, "cementmill_ElectricityConsumption_Comprehensive");    
-                }                    
+                if (mProductionLineTable.Rows[i]["Type"].ToString().Trim() == "熟料")
+                {
+                    mResultTable.Rows.Add("熟料", "clinker", "R0101");
+                    mResultTable.Rows.Add("生料制备", "rawMaterialsPreparation", "R010101");
+                    mResultTable.Rows.Add("熟料制备", "clinkerPreparation", "R010102");
+                }
+                if (mProductionLineTable.Rows[i]["Type"].ToString().Trim() == "水泥磨")
+                {
+                    mResultTable.Rows.Add("水泥", "cementilment", "R0102");
+                }
             }
+            return mResultTable;
+        }
+
+        private static DataTable GetBalanceEnergyDataTable(string mOrganizationID, string mStartDate, string mEndDate)
+        {
+            string mSql = @"SELECT A.OrganizationID as FactoryOrganizationID
+                                   ,B.VariableId
+                                   ,B.VariableName
+                                   ,B.OrganizationID
+                                   ,SUM(B.TotalPeakValleyFlatB) AS TotalPeakValleyFlatB
+                                 FROM tz_Balance A,
+                                      balance_Energy B
+                                where A.OrganizationID = @OrganizationID
+                                  and A.StaticsCycle = 'day'
+                                  and A.BalanceId = B.KeyId
+                                  and A.TimeStamp >= @mStartTime
+                                  and A.TimeStamp <= @mEndTime
+                                  and B.VariableId in ('totalElectricityConsumptionOfClinker_ElectricityQuantity',  --熟料总共耗电量
+                                                       'totalElectricityConsumptionOfCement_ElectricityQuantity',   --水泥总共耗电量
+                                                       'clinker_MixtureMaterialsOutput','rawMaterialsPreparation_ElectricityQuantity',--生料制备产量、电量
+		                                               'clinker_ClinkerOutput','clinkerPreparation_ElectricityQuantity',--熟料制备产量、电量
+                                                       'cement_CementOutput','cementPreparation_ElectricityQuantity',--水泥制备产量、电量
+                                                       'clinker_ClinkerInput', --水泥磨自产熟料消耗量
+                                                       'clinker_ClinkerOutsourcingInput')   --水泥磨外购熟料消耗量
+                                  group by A.OrganizationID,B.OrganizationID,B.VariableId,B.VariableName
+                                  order by B.OrganizationID";
+            SqlParameter[] paras = { new SqlParameter("@OrganizationID",mOrganizationID),
+                                     new SqlParameter("@mStartTime",mStartDate),
+                                     new SqlParameter("@mEndTime",mEndDate)};
+            try
+            {
+                DataTable table = _dataFactory.Query(mSql, paras);
+                return table;
+            }
+            catch
+            {
+                return null;
+            }
+
+        }
+
+        private static DataTable GetResultTableStructrue()
+        {
+            DataTable table = new DataTable();
+            table.Columns.Add("ProductionLineName", typeof(string));
+            table.Columns.Add("OrganizationType", typeof(string));
+            table.Columns.Add("LevelCode", typeof(string));
+            table.Columns.Add("ElectricityQuantity", typeof(string));
+            table.Columns.Add("MaterialWeight", typeof(string));
+            table.Columns.Add("PowerConsumption", typeof(string));
+            table.Columns.Add("CalculationPowerConsumption", typeof(string));
+            table.Columns.Add("ComprehensivePowerConsumption", typeof(string));
+            table.Columns.Add("ComprehensiveCementConsumption", typeof(string));
+            table.Columns.Add("state", typeof(string));
             return table;
         }
-        private static DataTable GetTableStructrue() 
+
+        private static void GetCementComprehensiveConsumption(string mFactoryOrganizationID, DataTable table)
         {
-            DataTable structrueTable = new DataTable();
-            structrueTable.Columns.Add("OrganizationId",typeof(string));
-            structrueTable.Columns.Add("ProcessName", typeof(string));
-            structrueTable.Columns.Add("Type", typeof(string));
-            structrueTable.Columns.Add("ElectricityQuantityVariable", typeof(string));
-            structrueTable.Columns.Add("ElectricityQuantity", typeof(decimal));
-            structrueTable.Columns.Add("MaterialWeightVariable", typeof(string));
-            structrueTable.Columns.Add("MaterialWeight", typeof(decimal));
-            structrueTable.Columns.Add("PowerConsumption", typeof(decimal));
-            structrueTable.Columns.Add("CalculationPowerConsumption", typeof(decimal));
-            structrueTable.Columns.Add("ComprehensivePowerConsumptionVariable", typeof(string));
-            structrueTable.Columns.Add("ComprehensivePowerConsumption", typeof(string));
-            return structrueTable;       
+            DataTable mAllBalanceEnergyTable = table;
+            if (mAllBalanceEnergyTable.Rows.Count > 0)
+            {
+                //totalElectricityConsumptionOfClinker_ElectricityQuantity  熟料总共耗电量
+                //totalElectricityConsumptionOfCement_ElectricityQuantity   水泥总共耗电量
+                //clinker_ClinkerOutput                 熟料产量
+                //cement_CementOutput                   水泥产量
+                //clinker_ClinkerInput                  水泥磨自产熟料消耗量
+                //clinker_ClinkerOutsourcingInput       水泥磨外购熟料消耗量
+
+                if (mAllBalanceEnergyTable.Select("VariableId='totalElectricityConsumptionOfClinker_ElectricityQuantity'").Length != 0)
+                {
+                    mTotalElectricityConsumptionOfClinker = (decimal)mAllBalanceEnergyTable.Compute("sum(TotalPeakValleyFlatB)", "VariableId='totalElectricityConsumptionOfClinker_ElectricityQuantity'");
+                }
+                else
+                {
+                    mTotalElectricityConsumptionOfClinker = 0M;
+                }
+
+                if (mAllBalanceEnergyTable.Select("VariableId='totalElectricityConsumptionOfCement_ElectricityQuantity'").Length != 0)
+                {
+                    mTotalElectricityConsumptionOfCement = (decimal)mAllBalanceEnergyTable.Compute("sum(TotalPeakValleyFlatB)", "VariableId='totalElectricityConsumptionOfCement_ElectricityQuantity'");
+                }
+                else
+                {
+                    mTotalElectricityConsumptionOfCement = 0M;
+                }
+
+                if (mAllBalanceEnergyTable.Select("VariableId='clinker_ClinkerOutput'").Length != 0)
+                {
+                    mClikerOutput = (decimal)mAllBalanceEnergyTable.Compute("sum(TotalPeakValleyFlatB)", "VariableId='clinker_ClinkerOutput'");
+                }
+                else
+                {
+                    mClikerOutput = 0M;
+                }
+
+                if (mAllBalanceEnergyTable.Select("VariableId='cement_CementOutput'").Length != 0)
+                {
+                    mCemmentOutput = (decimal)mAllBalanceEnergyTable.Compute("sum(TotalPeakValleyFlatB)", "VariableId='cement_CementOutput'");
+                }
+                else
+                {
+                    mCemmentOutput = 0M;
+                }
+
+                if (mAllBalanceEnergyTable.Select("VariableId='clinker_ClinkerInput'").Length != 0)
+                {
+                    mCemmentOfClinkerInput = (decimal)mAllBalanceEnergyTable.Compute("sum(TotalPeakValleyFlatB)", "VariableId='clinker_ClinkerInput'");
+                }
+                else
+                {
+                    mCemmentOfClinkerInput = 0M;
+                }
+
+                if (mAllBalanceEnergyTable.Select("VariableId='clinker_ClinkerOutsourcingInput'").Length != 0)
+                {
+                    mCemmentOfClinkerOutsourcingInput = (decimal)mAllBalanceEnergyTable.Compute("sum(TotalPeakValleyFlatB)", "VariableId='clinker_ClinkerOutsourcingInput'");
+                }
+                else
+                {
+                    mCemmentOfClinkerOutsourcingInput = 0M;
+                }
+
+                if (mClikerOutput >= 10)//默认熟料产量小于10，电耗即为0
+                {
+                    mClinkerConsumption = (mTotalElectricityConsumptionOfClinker / mClikerOutput).ToString("0.00");//熟料综合电耗
+                }
+                else
+                {
+                    mClinkerConsumption = "0.00";
+                }
+
+                if (mCemmentOutput >= 10)//默认水泥磨产量小于10，电耗即为0
+                {
+                    mCementConsumption = (mTotalElectricityConsumptionOfCement / mCemmentOutput).ToString("0.00");//水泥单耗电耗
+                    if (mFactoryOrganizationID == "zc_nxjc_szsc_szsf")//石嘴山分厂的外购熟料也当成是自产熟料计算，与宁东相同
+                    {
+                        mCementComprehensiveConsumption = mCementConsumption;
+                    }
+                    else
+                    {
+                        mCementComprehensiveConsumption = (((mCemmentOfClinkerOutsourcingInput * mClinkerOutsourcingInputConsumption) + decimal.Parse(mClinkerConsumption) * mCemmentOfClinkerInput + mTotalElectricityConsumptionOfCement) /
+                           mCemmentOutput).ToString("0.00");//水泥综合电耗
+                    }
+                }
+                else
+                {
+                    mCementConsumption = "0.00";
+                    mCementComprehensiveConsumption = "0.00";
+                }
+            }
+            else
+            {
+                mCementConsumption = "0.00";
+                mClinkerConsumption = "0.00";
+                mCementComprehensiveConsumption = "0.00";
+            }
+
         }
     }
 

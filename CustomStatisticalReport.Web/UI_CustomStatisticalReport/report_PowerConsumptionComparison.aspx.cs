@@ -46,9 +46,9 @@ namespace CustomStatisticalReport.Web.UI_CustomStatisticalReport
         [WebMethod]
         public static string GetReportData(string organizationId, string mStartDate, string mEndDate) 
         {
-            DataTable m_ReportData = PowerConsumptionComparison.GetReportData(organizationId, mStartDate, mEndDate);
-            string m_ReportDataJson = EasyUIJsonParser.DataGridJsonParser.DataTableToJson(m_ReportData);
-            return m_ReportDataJson;        
+            DataTable table = PowerConsumptionComparison.GetReportData(organizationId, mStartDate, mEndDate);
+            string json = EasyUIJsonParser.TreeGridJsonParser.DataTableToJsonByLevelCode(table, "LevelCode");
+            return json;        
         }
     }
 }
